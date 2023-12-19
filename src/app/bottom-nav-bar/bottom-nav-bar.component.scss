@@ -1,0 +1,67 @@
+@import "../../scss/variables";
+
+.counter
+{
+    top: -18px;
+}
+
+.iconBorder
+{
+    border: 2px $dynamic-c5 solid;
+}
+
+
+
+  
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .burger-icon
+    {
+        display: block;
+    }
+}
+      
+/* Low resolution Tablets and iPads */
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .burger-icon
+    {
+        display: block;
+    }
+}
+      
+/* Tablets iPads (Portrait) */
+@media (min-width: 768px) and (max-width: 1024px){
+
+    .burger-icon
+    {
+        display: block;
+    }
+}
+
+/* Surface Pro 7 */
+@media (min-width: 912px) and (max-width: 1368px){
+
+    .burger-icon
+    {
+        display: block;
+    }
+}
+  
+/* Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px){
+    .burger-icon
+    {
+        display: none;
+    }
+}
+  
+/* Big boi Monitors */
+@media (min-width: 1281px) {
+
+    .burger-icon
+    {
+        display: none;
+    }
+
+}

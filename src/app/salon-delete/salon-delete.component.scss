@@ -1,0 +1,19 @@
+* {
+    direction: ltr;
+}
+.bg-red{
+    background-color: #fd1212 !important;
+}
+
+.border-btn{
+    border-radius: 26px !important;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 11%;
+    left: 0;
+    z-index: 1030;
+}

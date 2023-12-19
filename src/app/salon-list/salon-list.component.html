@@ -1,0 +1,25 @@
+<app-header-nav navLink="/home"  customClass="fixed-top" headerName="Salons"></app-header-nav>
+
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+ </div>
+
+<div class="list-group" *ngIf="!isLoading">
+  <div *ngFor="let model of models"> 
+    <a   (click)="navigator(model.userId)" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between col-ms-4">
+            <h5 style="width:96px;">{{model.salonName}}</h5>
+           <img  [ngStyle]="{'background-image': 'url(' + model.profileimg100x100 + ')'}" class="imgStyle img-fluid z-depth-1 rounded-circle customClass" >             
+          <small class="text-muted text-center" style="min-width:82px;">{{model.distance}}km distance</small>
+        </div>
+       
+        <div class="row justify-content-center"><i class="fas fa-map-marker-alt"> </i> &nbsp;  <p class="mb-1"> {{model.address.location}}</p> </div>
+        <div class="row justify-content-center"><i class="fas fa-phone-square-alt"> </i>  &nbsp;  <p class="mb-1"> {{model.salonPhoneNumber}}</p> </div>    
+        <ngb-rating [(rate)]="model.finalrating.score" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>({{model.finalrating.voters}})
+      </a>
+    </div>
+      
+</div>
+
+
+

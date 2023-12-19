@@ -1,0 +1,64 @@
+
+<!-- Navbar -->
+  <mdb-navbar  id="bottombar" SideClass="navbar wbg fixed-bottom navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
+    [containerInside]="false">
+
+    <navlinks class="w-100" >
+      <!-- SideNav slide-out button -->
+      <div class="d-flex justify-content-around bd-highlight w-100">
+        <div class="bd-highlight burger-icon navbaritem">
+          <a (click)="showNavBar()" class="nav-link">
+            <mdb-icon fas icon="bars"></mdb-icon>
+          </a>
+        </div>
+        
+        <div class="bd-highlight navbaritem" *ngIf="isAdmin">
+          <a class="nav-link" (click)="navigateToCalendar();" [ngClass]="{ 'active dynamic-private-c6':activeTab==='calendar'}">
+            <mdb-icon far icon="calendar-alt"></mdb-icon>
+          </a>
+        </div>
+        
+        <div class="bd-highlight navbaritem" *ngIf="!isAdmin">
+          <a class="nav-link" (click)=" getHome();" [ngClass]="{ 'active dynamic-private-c6':activeTab==='home'}">
+            <mdb-icon fas icon="home"></mdb-icon>
+          </a>
+        </div>
+        
+        <!--<div class="bd-highlight navbaritem " [ngClass]="{ 'topborder':activeTab==='Recent'}">
+          <a class="nav-link" (click)="changeActiveTab('Recent'); getRecently();"
+            [ngClass]="{ 'active text-primary':activeTab==='Recent'}"><i class="fas fa-history"></i> </a>
+        </div>-->
+      <!-- <div class="bd-highlight navbaritem " [ngClass]="{ 'topborder':activeTab==='notification'}">
+          <a class="nav-link" (click)="changeActiveTab('notification'); getNotification();"
+            [ngClass]="{ 'active text-primary':activeTab==='notification'}"><i class="fas fa-bell"></i></a>
+        </div>-->
+
+        <div class="pt-1 bd-highlight navbaritem" [ngClass]="{ 'topborder':activeTab==='notification'}">
+          <a class="nav-link " (click)="getNotification();"  [ngClass]="{ 'active dynamic-private-c6':activeTab==='notification'}">
+            <mdb-icon fas icon="bell" class="bell" ></mdb-icon>
+            <span *ngIf="newNotificationCount > 0" class="counter">{{newNotificationCount}}</span>
+          </a>
+      </div>
+        <div class="bd-highlight navbaritem"  *ngIf="!isAdmin" [ngClass]="{ 'topborder':activeTab==='Favorite'}">
+          <a class="nav-link" (click)="changeActiveTab('Favorite'); getFavorites();"
+            [ngClass]="{ 'active dynamic-private-c6':activeTab==='Favorite'}">
+            <mdb-icon fas icon="star"></mdb-icon>
+          </a>
+        </div>
+        <div class="bd-highlight navbaritem"  *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/salon-panel">
+            <!--<mdb-icon fas icon="store"></mdb-icon>-->
+            <img [src]="this.smallProfileImg" style="width: 30px; height:30px; margin-bottom:3.1px;" [ngClass]="{ 'iconBorder':activeTab==='mysalon'}"  class="img-fluid z-depth-1 rounded-circle"
+            alt="R">
+          </a>
+        </div>
+
+
+        <div class="bd-highlight navbaritem"  *ngIf="!isAdmin">
+          <a class="nav-link" (click)="changeActiveTab('myAppointment'); getMyAppointment();" routerLink="/my-appointment" [ngClass]="{ 'active text-primary':activeTab==='myAppointment'}">
+            <mdb-icon fas icon="user-clock"></mdb-icon>
+          </a>
+        </div>
+      </div>
+    </navlinks>
+  </mdb-navbar>

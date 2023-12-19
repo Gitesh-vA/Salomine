@@ -1,0 +1,1133 @@
+<app-header-nav showConfirmationModal="{{thereAnyChanged}}" navLink="{{backButtonPoint}}"
+  customClass="fixed-top dynamic-private-bg-c6" headerName="{{headerName}}"></app-header-nav>
+
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+
+<form [formGroup]="secondFormGroup" *ngIf="!isLoading" class="step2From" (ngSubmit)="onSubmit()" #secStep="ngForm">
+  <div class="md-form topBox">
+    <div class="md-form">
+
+      <app-profile-section></app-profile-section>
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="salonName.value" class="prefix filled" [inlineSVG]="'assets/images/updatesalon/UserBlue.svg'">
+          </div>
+          <div *ngIf="!salonName.value" class="prefix blank" [inlineSVG]="'assets/images/updatesalon/WhiteUser.svg'">
+          </div>
+        </div>
+        <div class="col">
+          <input mdbInput [class.is-invalid]="salonName.invalid && salonName.touched" (change)="change()" maxlength="50"
+            type="text" id="salonName" class="form-control" formControlName="salonName">
+          <label for="salonName">{{'updateSalon.salonName' | translate }}</label>
+          <div *ngIf="salonName.invalid && salonName.touched" class="row">
+            <small *ngIf="salonName.errors?.required" class="text-danger">{{ 'updateSalon.salonNameIsRequired' |
+              translate }}</small>
+            <small *ngIf="salonName.errors?.minlength" class="text-danger">{{ 'updateSalon.salonNameMustBeAtLeast' |
+              translate }}</small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="salonPhoneNumber.value" class="prefix filled"
+            [inlineSVG]="'assets/images/updatesalon/PhoneBlue.svg'"></div>
+          <div *ngIf="!salonPhoneNumber.value" class="prefix blank"
+            [inlineSVG]="'assets/images/updatesalon/WhitePhone.svg'"></div>
+        </div>
+        <div class="col">
+          <input mdbInput [class.is-invalid]="salonPhoneNumber.invalid && salonPhoneNumber.touched" (change)="change()"
+            type="text" id="salonPhoneNumber" class="form-control" formControlName="salonPhoneNumber">
+          <label id="salonPhoneNumber" for="salonPhoneNumber">{{ 'updateSalon.salonPhoneNumber' | translate }}</label>
+          <div *ngIf="salonPhoneNumber.invalid && salonPhoneNumber.touched" class="row">
+            <small *ngIf="salonPhoneNumber.errors?.required" class="text-danger">{{'updateSalon.phoneNumberIsRequired' |
+              translate }}</small>
+            <small *ngIf="salonPhoneNumber.errors?.pattern"
+              class="text-danger">{{'updateSalon.phoneNumberAcceptOnlyNumbers' | translate }}</small>
+            <small *ngIf="salonPhoneNumber.errors?.minlength"
+              class="text-danger">{{'updateSalon.phoneNumberMustBeAtLeast' | translate }}</small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="whatsAppNumber.value" class="prefix filled"
+            [inlineSVG]="'assets/images/updatesalon/Whatsapp.svg'"></div>
+          <div *ngIf="!whatsAppNumber.value" class="prefix blank whatsappSVG"
+            [inlineSVG]="'assets/images/updatesalon/WhiteWhatsapp.svg'"></div>
+        </div>
+        <div class="col">
+          <input mdbInput [class.is-invalid]="whatsAppNumber.invalid && whatsAppNumber.touched" (change)="change()"
+            type="text" id="whatsAppNumber" class="form-control" formControlName="whatsAppNumber">
+          <label id="whatsAppNumber" for="whatsAppNumber">{{ 'updateSalon.whatsAppNumber' | translate }}</label>
+          <div *ngIf="whatsAppNumber.invalid && whatsAppNumber.touched" class="row">
+            <small *ngIf="whatsAppNumber.errors?.pattern" class="text-danger">
+              {{'updateSalon.whatsAppNumberAcceptOnlyNumbers' | translate }}</small>
+            <small *ngIf="whatsAppNumber.errors?.minlength" class="text-danger"> {{'updateSalon.whatsAppMustBeAtLeast' |
+              translate }}</small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="fbLink.value" class="prefix filled" [inlineSVG]="'assets/images/updatesalon/FacebookBlue.svg'">
+          </div>
+          <div *ngIf="!fbLink.value" class="prefix blank" [inlineSVG]="'assets/images/updatesalon/WhiteFacebook.svg'">
+          </div>
+        </div>
+        <div class="col row">
+          <div *ngIf="fbInfoIsVisible" (click)="facebookInfoModal.show();">
+            <mdb-icon fas icon="info" class="info dynamic-private-c6"></mdb-icon>
+          </div>
+          <div style="width: 100%;" [ngClass]="{'col-11' : fbInfoIsVisible}">
+            <input mdbInput type="text" id="fbLink" [class.is-invalid]="fbLink.invalid && fbLink.touched"
+              (change)="change()" class="form-control" formControlName="fbLink">
+            <label for="fbLink">{{'updateSalon.facebookLink' | translate }}</label>
+
+            <div *ngIf="fbLink.invalid && fbLink.touched" class="row">
+              <small *ngIf="fbLink.errors?.pattern" class="text-danger">{{'updateSalon.facebookUrlIsNotValid' |
+                translate }}</small>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="instaLink.value" class="prefix filled" [inlineSVG]="'assets/images/updatesalon/InstaBlue.svg'">
+          </div>
+          <div *ngIf="!instaLink.value" class="prefix blank" [inlineSVG]="'assets/images/updatesalon/Whiteinsta.svg'">
+          </div>
+        </div>
+        <div class="col row">
+          <div *ngIf="instaInfoIsVisible">
+            <mdb-icon fas icon="info" (click)="instaInfoModal.show();" class="info dynamic-private-c6"></mdb-icon>
+          </div>
+          <div style="width: 100%;" [ngClass]="{'col-11' : instaInfoIsVisible}">
+            <input mdbInput type="text" id="instaLink" [class.is-invalid]="instaLink.invalid && instaLink.touched"
+              (change)="change()" class="form-control" formControlName="instaLink">
+            <label for="instaLink">{{'updateSalon.instagramLink' | translate }}</label>
+            <div *ngIf="instaLink.invalid && instaLink.touched" class="row">
+              <small *ngIf="instaLink.errors?.pattern" class="text-danger">{{'updateSalon.instagramUrlIsNotValid' |
+                translate }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="location.value" s class="prefix filled"
+            [inlineSVG]="'assets/images/updatesalon/LocationBlue.svg'"></div>
+          <div *ngIf="!location.value" class="prefix blank" [inlineSVG]="'assets/images/updatesalon/WhiteLocation.svg'">
+          </div>
+        </div>
+        <div class="col m-auto">
+          <input type="text" id="location" (change)="locationChanged()"
+            [class.is-invalid]="location.invalid && location.touched"
+            placeholder="{{'updateSalon.salonAddress' | translate }}" class="form-control pb-0"
+            ngx-google-places-autocomplete #places="ngx-places" (onAddressChange)="onChange($event)"
+            formControlName="location" />
+          <div *ngIf="location.invalid && location.touched" class="row">
+            <small *ngIf="location.errors?.required && locationIsValid"
+              class="text-danger">{{'updateSalon.salonAddressIsRequired' | translate }}</small>
+
+          </div>
+          <div class="row">
+            <small *ngIf="!locationIsValid" class="text-danger">{{'updateSalon.salonAddressIsNotValid' | translate
+              }}</small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-2">
+          <div *ngIf="galeryImagesLength" class="prefix filled"
+            [inlineSVG]="'assets/images/updatesalon/GalleryBlue.svg'"></div>
+          <div *ngIf="!galeryImagesLength" class="prefix blank"
+            [inlineSVG]="'assets/images/updatesalon/WhiteGallery.svg'"></div>
+
+        </div>
+        <div class="col m-auto">
+          <input type="text" id="pictures" class="form-control pb-0" value="{{'updateSalon.addPhotos' | translate}}"
+            (click)="openGalery()" />
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+  <div class="buttonNavs">
+    <ul class="nav  ltr ml-2 mr-2">
+
+      <li class="nav-item">
+        <a type="button" (click)="addEmployee()" class="btn-floating  btn-large  waves-effect waves-light grayBorder"><i
+            class="grayLetter">
+            <mdb-icon fas icon="user-plus" class="grayLetter"></mdb-icon>
+          </i></a>
+        <p class="iconLabel"> {{'Common.Add' | translate}} </p>
+      </li>
+      <li class="nav-item" *ngFor="let employee of t.controls;  let i = index">
+        <a type="button"
+          [ngClass]="selected_EmployeeID  == Employees[i]._id ? 'dynamic_color dynamic_border_color' : 'grayLetter'"
+          *ngIf="this.t.length > 1" id="employee_{{i}}" (click)="selectEmployee(Employees[i]._id,i)"
+          [ngStyle]="{'background-image': Employees[i].profile ? 'url(' + Employees[i].profile  + ')' : 'url(assets/images/defaultProfilePic.png)' }"
+          class="btn-floating btn-large  waves-effect waves-light profEmp">
+          <i [ngClass]="selected_EmployeeID  == Employees[i]._id ? 'dynamic_color' : 'grayLetter'">
+          </i>
+        </a>
+        <p class="iconLabel" *ngIf="this.t.length > 1"
+          [ngClass]="selected_EmployeeID  == Employees[i]._id ? 'dynamic_color selectedEmp' : 'grayLetter'">
+          {{t.at(i).get('employeeName').value | titlecase}}</p>
+      </li>
+
+      <li class="nav-item">
+        <!-- (click)="employeeListDialog.show()" -->
+        <a type="button" id="employeeDialog" *ngIf="this.t.length > 1" routerLink="/employee-list"
+          class="btn-floating btn-large ml-0"><i style="font-style: normal;font-weight: bolder;">
+            <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+          </i></a>
+      </li>
+    </ul>
+  </div>
+
+  <mdb-card *ngFor="let employee of t.controls;  let i = index">
+    <mdb-card-body *ngIf="selected_EmployeeID  == Employees[i]._id">
+      <mdb-card-text>
+
+
+
+
+
+        <div [formGroup]="employee">
+          <div class="md-form m-2">
+            <input mdbInput type="text" id="employeeName_{{i}}" [(ngModel)]="Employees[i].employeeName"
+              (change)="change()"
+              [class.is-invalid]="this.t.at(i).get('employeeName').invalid && this.t.at(i).get('employeeName').touched"
+              class="form-control bottomBorder" formControlName="employeeName">
+            <label class="employeeName rf" for="employeeName_{{i}}">{{'updateSalon.EmployeeName' | translate}}</label>
+            <div *ngIf="this.t.at(i).get('employeeName').invalid && this.t.at(i).get('employeeName').touched">
+              <small *ngIf="this.t.at(i).get('employeeName').errors?.required"
+                class="text-danger rf">{{'updateSalon.EmployeeNameIsRequired' | translate}}</small>
+            </div>
+          </div>
+
+
+
+
+
+          <p class="rf blackColor mt-4 mr-2"> {{'updateSalon.selectWorkHours' | translate}}:</p>
+          <div class="workTimeObj time-picker" formArrayName="workTimeObj">
+            <table mdbTable class="mt-3">
+              <thead class="btn-primary white-text">
+                <tr>
+                  <th scope="col" (click)="addRowWorkTimes(i)"><i class="fas fa-plus-circle white-text"></i></th>
+                  <th scope="col">{{'updateSalon.Day' | translate}}</th>
+                  <th scope="col">{{'updateSalon.from' | translate}}</th>
+                  <th scope="col">{{'updateSalon.at' | translate}}</th>
+                  <th scope="col">{{'updateSalon.breakTimeFrom' | translate}} <p class="m-0 wt_opt">({{'Common.optional'
+                      | translate}})</p>
+                  </th>
+                  <th scope="col">{{'updateSalon.breakTimeAt' | translate}} <p class="m-0 wt_opt">({{'Common.optional' |
+                      translate}})</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr mdbTableCol *ngFor="let item of this.Employees[i].workTimeObj; let j = index;">
+                  <td><i (click)="removeRowWorkTimes(i,j)" *ngIf="this.Employees[i].workTimeObj.length > 1"
+                      class="fas fa-minus-circle"></i></td>
+                  <td [formGroupName]="j" class="dDDcss">
+
+                    <!-- Old Code-->
+                    <!-- <mdb-select (ngModelChange)="onDaysIsChanged(i,j,$event)" class="custom-asset-dropdown daysDP"
+                      [enableSelectAll]="true" [multiple]="true"  selectAllLabel="{{'updateSalon.SelectAll' | translate}}" 
+                      [class.is-invalid]="this.t.at(i).get('workTimeObj').at(j).get('daysDropDown').invalid"
+                      formControlName="daysDropDown" [options]="daysDropdownList" [highlightFirst]="false" 
+                      placeholder=""></mdb-select> -->
+                    <div class="truncate-text"
+                      style="width: '100%'; border-bottom: '1px solid #ced4da'; padding: '0.6rem 0 0.4rem 0'; margin: '0 0 0.5rem 0'; ">
+                      <span *ngFor="let user of selectedDates[j],let k = index" class="relative waves-light customWidth"
+                        (click)="basicModalDemo.show(); onCheck(j)">
+                        <span *ngIf="k==0" [class.red-text]="user.showRed" style="display: inline;">{{ user.value
+                          }}</span>
+                        <span *ngIf="k>0" [class.red-text]="user.showRed" style="display: inline;">, {{ user.value
+                          }}</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td [formGroupName]="j">
+                    <mdb-time-picker class="text-center" formControlName="from"
+                      [class.is-invalid]="this.t.at(i).get('workTimeObj').at(j).get('from').invalid"
+                      (ngModelChange)="onOpenHourChanged(i,j)" [buttonLabel]="btnDateTimeLabel" [twelvehour]="false"
+                      [placeholder]="'updateSalon.selectTime' | translate" [darktheme]="false"></mdb-time-picker>
+                  </td>
+
+
+                  <td [formGroupName]="j" class="md-form">
+                    <mdb-time-picker class="text-center" (ngModelChange)="onOpenHourChanged(i,j)"
+                      [class.is-invalid]="this.t.at(i).get('workTimeObj').at(j).get('at').invalid" formControlName="at"
+                      [buttonLabel]="btnDateTimeLabel" [twelvehour]="false"
+                      [placeholder]="'updateSalon.selectTime' | translate" [darktheme]="false"></mdb-time-picker>
+                  </td>
+
+
+                  <td [formGroupName]="j" class="md-form">
+                    <mdb-time-picker (ngModelChange)="onOpenHourChanged(i,j)"
+                      [class.is-invalid]="this.t.at(i).get('workTimeObj').at(j).get('restTimeFrom').invalid"
+                      formControlName="restTimeFrom" [buttonLabel]="btnDateTimeLabel" [twelvehour]="false"
+                      [placeholder]="'updateSalon.selectTime' | translate" [darktheme]="false"></mdb-time-picker>
+                    <i class="fas fa-times at_x" *ngIf="this.t.at(i).get('workTimeObj').at(j).get('restTimeFrom').value"
+                      (click)="Clear('restTimeFrom',i,j)"></i>
+                  </td>
+
+
+
+                  <td [formGroupName]="j" class="md-form">
+                    <mdb-time-picker (ngModelChange)="onOpenHourChanged(i,j)"
+                      [class.is-invalid]="this.t.at(i).get('workTimeObj').at(j).get('restTimeAt').invalid"
+                      formControlName="restTimeAt" [buttonLabel]="btnDateTimeLabel" [twelvehour]="false"
+                      [placeholder]="'updateSalon.selectTime' | translate" [darktheme]="false"></mdb-time-picker>
+                    <i class="fas fa-times at_x" *ngIf="this.t.at(i).get('workTimeObj').at(j).get('restTimeAt').value"
+                      (click)="Clear('restTimeAt',i,j)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+
+
+          <p class="rf blackColor mt-4 mr-2">{{'updateSalon.selectCategories' | translate}}:</p>
+          <div class="form-group m-2 CategoriesSelect">
+            <label for="server"></label>
+            <mdb-select class="custom-asset-dropdown" [enableSelectAll]="false" [multiple]="true"
+              [class.is-invalid]="this.t.at(i).get('servers').invalid" formControlName="servers"
+              [options]="serverDropdownList" [highlightFirst]="false"
+              placeholder="{{'updateSalon.selectCategories' | translate}}"></mdb-select>
+            <div *ngIf="this.t.at(i).get('servers').invalid">
+              <small *ngIf="this.t.at(i).get('servers').errors?.required"
+                class="text-danger">{{'updateSalon.CategoriesIsRequired' | translate}}:</small>
+            </div>
+          </div>
+
+          <p class="rf blackColor mt-4 mb-1 mr-2">{{'updateSalon.selectService' | translate}}:</p>
+
+          <div class="rtlTxt">
+            <a (click)="getServiceNumber();"
+              style="font-size:16px; color:red;">*{{'updateSalon.missingServiceOrNeedHelp' | translate}}</a>
+          </div>
+
+
+
+          <div formArrayName="subServersObj">
+            <div class="devServerciesTable">
+              <table mdbTable class="serverciesTable">
+                <thead class="btn-primary white-text">
+                  <tr>
+                    <th (click)="addSubService(i);" class="text-center col1" scope="col"><i
+                        class="fas fa-plus-circle white-text"></i></th>
+                    <th class="text-center col2" scope="col">{{'updateSalon.Service' | translate}}</th>
+                    <th class="text-center col3" scope="col">{{'updateSalon.Price' | translate}}</th>
+                    <th class="text-center col4" scope="col">{{'updateSalon.TimeInMinutes' | translate}}</th>
+                    <!--  <th class="text-center col5" *ngIf="isContainBreakTime" scope="col">
+                      <mdb-icon fas (click)="basicModal.show()" icon="question-circle"></mdb-icon>
+                      {{'updateSalon.standbyTime' | translate}}
+                    </th>-->
+                  </tr>
+                </thead>
+                <tbody *ngFor="let field of this.Employees[i].subServersObj; let  j= index">
+                  <tr mdbTableCol (click)="services_click(i)">
+
+
+                    <td [formGroupName]="j" class="col1"><i (click)="removeSubService(i,j)"
+                        *ngIf="this.Employees[i].subServersObj.length > 1" class="fas fa-minus-circle"></i></td>
+
+                    <td [formGroupName]="j" class="col2 col2_service" scope="row">
+
+                      <div class="spinner-border spinner-border-sm text-info" role="status"
+                        *ngIf="issubServicesLoading">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="form-group  serverDP" *ngIf="!issubServicesLoading">
+                        <mdb-select optionHeight="30" formControlName="subServicesDp"
+                          (ngModelChange)="onSubServicesDpChanged(i,j,$event)"
+                          [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('subServicesDp').invalid"
+                          [options]="groupOptionsSelect"
+                          filterPlaceholder="{{'updateSalon.SearchForTheService' | translate}}"
+                          placeholder="{{'updateSalon.selectService' | translate}}">
+                        </mdb-select>
+                        <div *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServicesDp').invalid">
+                          <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServicesDp').errors?.required"
+                            class="text-danger"></small>
+                        </div>
+                      </div>
+                    </td>
+                    <td [formGroupName]="j" class="col3">
+                      <div class="md-form">
+                        <input mdbInput
+                          [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('subServicePrice').invalid"
+                          formControlName="subServicePrice" (keyup)="checkPriceInput($event,i,j)"
+                          id="subServicePrice_{{j}}" type="text" class="form-control text-center">
+                        <label for="subServicePrice_{{j}}" class="employeeName rf">{{'updateSalon.Price' |
+                          translate}}</label>
+                      </div>
+                      <div
+                        *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServicePrice').invalid && this.t.at(i).get('subServersObj').at(j).get('subServicePrice').touched"
+                        class="row">
+                        <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServicePrice').errors?.required"
+                          class="text-danger col-12"></small>
+                        <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServicePrice').errors?.pattern"
+                          class="text-danger col-12"></small>
+                      </div>
+                    </td>
+
+                    <td [formGroupName]="j" class="col4">
+                      <div class="md-form">
+                        <input mdbInput id="subServiceTime_{{j}}" formControlName="subServiceTime"
+                          (ngModelChange)="subServiceTime_onChanged(i,j,$event)"
+                          (keyup)="checkPeriodServiceInput($event,i,j)"
+                          [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('subServiceTime').invalid"
+                          type="text" class="form-control text-center">
+                        <label class="employeeName rf timeInMinLabel"
+                          for="subServiceTime_{{j}}">{{'updateSalon.TimeInMin' | translate}}</label>
+                      </div>
+
+                      <div
+                        *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServiceTime').invalid && this.t.at(i).get('subServersObj').at(j).get('subServiceTime').touched"
+                        class="row">
+                        <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServiceTime').errors?.required"
+                          class="text-danger col-12"></small>
+                        <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('subServiceTime').errors?.pattern"
+                          class="text-danger col-12"></small>
+                      </div>
+
+                    </td>
+
+                    <td [formGroupName]="j" class="col5" *ngIf="false">
+                      <div class="form-row">
+                        <!-- Grid column -->
+                        <div class="col">
+                          <!-- Material input -->
+                          <div class="md-form">
+                            <input mdbInput id="breakTimeFrom_{{j}}" formControlName="breakTimeFrom" maxlength="3"
+                              [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').invalid"
+                              type="text" class="form-control text-center">
+                            <label class="employeeName rf" for="breakTimeFrom_{{j}}">{{'updateSalon.fromMin' |
+                              translate}}</label>
+                          </div>
+
+                          <div
+                            *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').invalid && this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').touched"
+                            class="row">
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').errors?.required"
+                              class="text-danger col-12"></small>
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').errors?.pattern"
+                              class="text-danger col-12"></small>
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col">
+                          <!-- Material input -->
+                          <div class="md-form">
+                            <input mdbInput id="breakTimeAt_{{j}}" maxlength="3" formControlName="breakTimeAt"
+                              [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').invalid"
+                              type="text" class="form-control text-center">
+                            <label class="employeeName rf" for="breakTimeAt_{{j}}">{{'updateSalon.atMin' |
+                              translate}}</label>
+                          </div>
+
+                          <div
+                            *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').invalid && this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').touched"
+                            class="row">
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').errors?.required"
+                              class="text-danger col-12"></small>
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').errors?.pattern"
+                              class="text-danger col-12"></small>
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="this.Employees[i].subServersObj[j].isContainResetTime">
+                    <td colspan="3" class="resetTimeSection" [formGroupName]="j">
+                      <div class="form-row row">
+                        <!-- Grid column -->
+                        <div class="col-6">
+                          <!-- Material input -->
+                          <div class="md-form">
+                            <mdb-icon fas (click)="breakTimeAfter.show()" icon="question-circle"></mdb-icon>
+                            <label class="w-100">{{'updateSalon.resetTimeInMinutes' | translate}}</label>
+
+                          </div>
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-3">
+                          <!-- Material input -->
+                          <div class="md-form" style="bottom:5px;">
+                            <input mdbInput type="number" id="resetTime_{{j}}" formControlName="resetTime" maxlength="3"
+                              type="text"
+                              [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('resetTime').invalid"
+                              class="form-control text-center">
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+                      </div>
+                    </td>
+                  </tr>
+
+
+                  <tr *ngIf="this.Employees[i].subServersObj[j].isContainBreakTime">
+                    <td colspan="3" [formGroupName]="j" class="resetTimeSection">
+                      <div class="form-row row">
+                        <!-- Grid column -->
+                        <div class="col-4">
+                          <!-- Material input -->
+                          <div class="md-form">
+                            <mdb-icon fas (click)="basicModal.show()" icon="question-circle"></mdb-icon>
+                            <label class="w-100">{{'updateSalon.standbyTime' | translate}} </label>
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+
+
+                        <!-- Grid column -->
+                        <div class="col-4">
+                          <!-- Material input -->
+                          <div class="md-form">
+                            <input mdbInput id="breakTimeFrom_{{j}}" formControlName="breakTimeFrom" maxlength="3"
+                              [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').invalid"
+                              type="text" class="form-control text-center">
+                            <label class="employeeName rf" for="breakTimeFrom_{{j}}">{{'updateSalon.fromMin' |
+                              translate}}</label>
+                          </div>
+
+                          <div
+                            *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').invalid && this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').touched"
+                            class="row">
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').errors?.required"
+                              class="text-danger col-12"></small>
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeFrom').errors?.pattern"
+                              class="text-danger col-12"></small>
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-4">
+                          <!-- Material input -->
+                          <div class="md-form">
+                            <input mdbInput id="breakTimeAt_{{j}}" maxlength="3" formControlName="breakTimeAt"
+                              [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').invalid"
+                              type="text" class="form-control text-center">
+                            <label class="employeeName rf" for="breakTimeAt_{{j}}">{{'updateSalon.atMin' |
+                              translate}}</label>
+                          </div>
+
+                          <div
+                            *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').invalid && this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').touched"
+                            class="row">
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').errors?.required"
+                              class="text-danger col-12"></small>
+                            <small *ngIf="this.t.at(i).get('subServersObj').at(j).get('breakTimeAt').errors?.pattern"
+                              class="text-danger col-12"></small>
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+                      </div>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td colspan="4" class="additionalInfoSection" [formGroupName]="j">
+                      <div class="form-row row">
+                        <!-- Grid column -->
+                        <div class="col-12">
+                          <!-- Material input -->
+                          <div class="md-form" style="bottom:5px;">
+                            <input mdbInput id="additionalInfo_{{j}}" formControlName="additionalInfo" maxlength="500"
+                              type="text" placeholder="{{ 'Common.additionalInfo' | translate }}"
+                              [class.is-invalid]="this.t.at(i).get('subServersObj').at(j).get('additionalInfo').invalid"
+                              class="form-control text-center">
+                          </div>
+                        </div>
+                        <!-- Grid column -->
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="switch mdb-color-switch">
+          <label>
+            <input class="mdb-color-switch" *ngIf="isConfirmType.value" id="1"
+              (change)="changeConfirmTypeState($event)" type="checkbox" checked>
+            <input class="mdb-color-switch"  *ngIf="!isConfirmType.value" id="2"
+              (change)="changeConfirmTypeState($event)" type="checkbox">
+            <span class="lever mdb-color-switch"></span>
+          </label>
+        </div> -->
+
+
+        <div class="row" *ngIf="isQuestionnaireIsEnabled">
+          <div class="col-7">
+            <div>
+              <span (click)="AcceptAppointmentInfoDialog.show();">
+                <mdb-icon far class="questionicon dynamic-private-c6" icon="question-circle"></mdb-icon>
+              </span>
+              <label class="plr-2">שאלון</label>
+            </div>
+          </div>
+
+          <div class="col">
+            <!-- Material switch -->
+            <div class="switch mdb-color-switch">
+              <label>
+                <input class="mdb-color-switch" *ngIf="isConfirmType.value" id="1"
+                  (change)="changeConfirmTypeState($event)" type="checkbox" checked>
+                <input class="mdb-color-switch" *ngIf="!isConfirmType.value" id="2"
+                  (change)="changeConfirmTypeState($event)" type="checkbox">
+                <span class="lever mdb-color-switch"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </mdb-card-text>
+    </mdb-card-body>
+  </mdb-card>
+
+  <mdb-accordion class="advanceSettings rf" [multiple]="false">
+    <mdb-accordion-item [collapsed]="true">
+      <mdb-accordion-item-head>{{'updateSalon.AdvanceSettings' | translate }}
+        <span>&nbsp;</span></mdb-accordion-item-head>
+      <mdb-accordion-item-body>
+
+        <div class="row pt-3">
+          <div class="col-7">
+            <div>
+              <span (click)="AcceptAppointmentInfoDialog.show();">
+                <mdb-icon far class="questionicon dynamic-private-c6" icon="question-circle"></mdb-icon>
+              </span>
+              <label class="plr-2">{{'updateSalon.AcceptAppointment' | translate }} </label>
+            </div>
+          </div>
+
+          <div class="col">
+            <!-- Material switch -->
+            <div class="switch mdb-color-switch">
+              <label>
+                <input class="mdb-color-switch" *ngIf="isConfirmType.value" id="1"
+                  (change)="changeConfirmTypeState($event)" type="checkbox" checked>
+                <input class="mdb-color-switch" *ngIf="!isConfirmType.value" id="2"
+                  (change)="changeConfirmTypeState($event)" type="checkbox">
+                <span class="lever mdb-color-switch"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pt-4">
+          <div class="col col-8-1">
+            <div>
+              <span (click)="AppointmentDelayIntervalDialog.show();">
+                <mdb-icon far class="questionicon dynamic-private-c6" icon="question-circle"></mdb-icon>
+              </span>
+              <label class="plr-2">{{'updateSalon.AppointmentDelayInterval' | translate }} </label>
+            </div>
+          </div>
+
+          <div class="col-3-1 col p-0 minutesDP">
+            <div class="w-100">
+              <mdb-select [options]="minutesAppointmentDelayOptions"
+                (ngModelChange)="oMinutesAppointmentDelayOnChange($event)"
+                formControlName="minutesAppointmentDelay"></mdb-select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row pt-4 pb-3">
+          <div class="col-12 p-0">
+            <div>
+              <!-- <span (click)="AppointmentDelayIntervalDialog.show()">
+                <mdb-icon far class="questionicon dynamic-private-c6" icon="question-circle"></mdb-icon>
+              </span> -->
+              <label class="plr-2" style="font-weight: bold;">{{'updateSalon.AvailabilityOption.title' | translate
+                }}:</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-check form-check-inline">
+            <input type="radio" formControlName="selectedAvailabilityMode" (click)="changeSelectedAvailabilityMode(0)"
+              class="form-check-input" id="materialInline1" name="selectedAvailabilityMode" mdbInput
+              [value]="selectedAvailability == 0">
+            <label class="form-check-label" for="materialInline1">{{'updateSalon.AvailabilityOption.bySelectedService' |
+              translate }}</label>
+          </div>
+        </div>
+        <p class="plr-5" style="color:darkgray">{{'updateSalon.AvailabilityOption.bySelectedServiceExample' | translate
+          }}</p>
+        <div class="row pt-3">
+          <div class="form-check form-check-inline">
+            <input type="radio" formControlName="selectedAvailabilityMode" (click)="changeSelectedAvailabilityMode(1)"
+              class="form-check-input" id="materialInline2" name="selectedAvailabilityMode" mdbInput
+              [value]="selectedAvailability == 1">
+            <label class="form-check-label"
+              for="materialInline2">{{'updateSalon.AvailabilityOption.byMinimumServiceTime' | translate }}</label>
+          </div>
+        </div>
+        <p class="plr-5" style="color:darkgray">{{'updateSalon.AvailabilityOption.byMinimumServiceTimeExample' |
+          translate }}</p>
+        <div class="row pt-3">
+          <div class="col-8 p-0">
+            <div class="form-check form-check-inline">
+              <input type="radio" formControlName="selectedAvailabilityMode" (click)="changeSelectedAvailabilityMode(2)"
+                class="form-check-input" id="materialInline3" name="selectedAvailabilityMode" mdbInput
+                [value]="selectedAvailability == 2">
+              <label class="form-check-label" for="materialInline3">{{'updateSalon.AvailabilityOption.byCustomInterval'
+                | translate }}</label>
+            </div>
+            <p class="plr-5 col-12" style="color:darkgray">{{'updateSalon.AvailabilityOption.byCustomIntervalExample' |
+              translate }}</p>
+          </div>
+
+
+          <div class="col-4 minutesDP">
+            <div>
+              <mdb-select [ngClass]="{'disabled' : selectedAvailability != 2}" [options]="mintuesIntervalOptions"
+                formControlName="minutesCustomInterval"></mdb-select>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Material inline 2 -->
+
+        <!-- Material inline 3 -->
+        <!-- -->
+
+
+
+      </mdb-accordion-item-body>
+    </mdb-accordion-item>
+  </mdb-accordion>
+
+
+
+
+
+
+
+  <div class="mt-4" *ngIf="isUpdateMode == 'true'">
+    <button mdbBtn type="submit" block="true" class="dynamic-private-bg-c6 text-white"
+      mdbWavesEffect>{{'updateSalon.Update' | translate}}</button>
+  </div>
+  <div class="mt-4" *ngIf="isUpdateMode != 'true'">
+    <button mdbBtn type="submit" block="true" class="dynamic-private-bg-c6 text-white"
+      mdbWavesEffect>{{'updateSalon.openSalon' |
+      translate}}</button>
+  </div>
+</form>
+
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">{{'updateSalon.explainingOnBreakTimeTitle' | translate}}</h4>
+      </div>
+      <div class="modal-body">
+        {{'updateSalon.explainingOnBreakTimeContent' | translate}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.hide()"
+          mdbWavesEffect>{{'Common.GotIt' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #breakTimeAfter="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="breakTimeAfter.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">{{'updateSalon.explainingOnBreakTimeAfterTitle' | translate}}
+        </h4>
+      </div>
+      <div class="modal-body">
+        {{'updateSalon.explainingOnBreakTimeAfterContent' | translate}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="breakTimeAfter.hide()"
+          mdbWavesEffect>{{'Common.GotIt' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #confirmationModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="confirmationModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">{{'Common.Warning' | translate}}</h4>
+      </div>
+      <div class="modal-body">
+        {{'updateSalon.exitFromSalonWithoutSaveMsg' | translate}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" (click)="navigateToBack()"
+          aria-label="Close" mdbWavesEffect>{{'Common.Yes' | translate}}</button>
+        <button type="button" mdbBtn outline="true"
+          class="dynamic-private-border-c6 dynamic-private-c6 relative waves-light" (click)="confirmationModal.hide()"
+          mdbWavesEffect>{{'Common.No' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div mdbModal #facebookInfoModal="mdbModal" class="modal fade top" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-top" aria-label="Close" (click)="facebookInfoModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-center" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body text-center">
+        <p class="font-weight-bold">1- {{'updateSalon.facebookInstruction.step1' | translate}} </p>
+        <p class="font-weight-bold">2- {{'updateSalon.facebookInstruction.step2' | translate}}</p>
+        <p class="font-weight-bold">3- {{'updateSalon.facebookInstruction.step3' | translate}}</p>
+        <p class="font-weight-bold">4- {{'updateSalon.facebookInstruction.step4' | translate}}</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" aria-label="Close"
+          (click)="facebookInfoModal.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #instaInfoModal="mdbModal" class="modal fade top" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-top" aria-label="Close" (click)="instaInfoModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-center" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body  text-center">
+        <p class="font-weight-bold">1- {{'updateSalon.intagramInsturction.step1' | translate}}</p>
+        <p class="font-weight-bold">2- {{'updateSalon.intagramInsturction.step2' | translate}}</p>
+        <p class="font-weight-bold">3- {{'updateSalon.intagramInsturction.step3' | translate}}</p>
+        <p class="font-weight-bold">4- {{'updateSalon.intagramInsturction.step4' | translate}}</p>
+        <p class="font-weight-bold">5- {{'updateSalon.intagramInsturction.step5' | translate}}</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" aria-label="Close"
+          (click)="instaInfoModal.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div mdbModal #employeeListDialog="mdbModal" class="modal fade top employeesModal" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+
+      <div class="fullWH" *ngIf="isUploading">
+        <mdb-spinner class="centered"></mdb-spinner>
+      </div>
+      <div class="modal-body  text-center">
+        <ul class="list-group">
+          <li class="list-group-item  border-0 justify-content-between align-items-center"
+            *ngFor="let employee of Employees;  let i = index">
+            <div class="row centervirtical">
+              <div class="col-3">
+                <div class="ncontainerp" style="width:70px; height:70px;">
+                  <div class="outerp"
+                    [ngStyle]="{'background-image': (employee.profile && employee.profile.profileimg100x100) ? 'url(' + this.host + employee.profile.profileimg100x100 + ')' : 'url(assets/images/defaultProfilePic.png)' }">
+                    <div class="innerp">
+                      <input type="file" (click)="$event.target.value=null;"
+                        (change)="onImagePicked($event,t.at(i).get('_id').value)" #filePicker>
+                      <div style="height: 25px; width: 25px;  display: inline-block" class="filled"
+                        (click)="filePicker.click()" [inlineSVG]="'assets/images/updatesalon/edit.svg'"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-7">
+                {{t.at(i).get('employeeName').value}}
+              </div>
+              <div class="col-2">
+                <mdb-icon [ngClass]="{'text-danger' : this.t.length > 1}"
+                  (click)="this.t.length > 1 && deleteEmployee(i,Employees[i]._id)" fas icon="minus-circle"></mdb-icon>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div mdbModal #exceedMaxEmpDialog="mdbModal" class="modal fade top employeesModal" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-body  text-center ">
+        <p>{{'updateSalon.exceededMaxEmployees' | translate}}, <a (click)="getServiceNumber();"
+            class="text-primary font-weight-bold">{{'Common.clickHere' | translate}}</a> {{'updateSalon.toContactUs' |
+          translate }}.</p>
+      </div>
+      <div class="modal-footer justify-content-center border-0 ">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" aria-label="Close"
+          (click)="exceedMaxEmpDialog.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #exceedMaxEmpAllowedDialog="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="text-center">
+          <mdb-icon fas size="4x" class="mb-3 animated rotateIn" icon="user-times"></mdb-icon>
+          <p>{{'updateSalon.exceededMaxNumberOfEmployees' | translate}}</p>
+        </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="primary" class="waves-light" (click)="navigateToPlansDialog()"
+          mdbWavesEffect>{{'updateSalon.GetItNow' | translate}}
+          <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+        </a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect
+          (click)="exceedMaxEmpAllowedDialog.hide()">{{'updateSalon.NoThanks' | translate}}</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+<div mdbModal #invalidInputModal="mdbModal" class="modal fade top employeesModal" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-body  text-center ">
+        <p>{{invalidDescription}}</p>
+      </div>
+      <div class="modal-footer justify-content-center border-0 ">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" aria-label="Close"
+          (click)="invalidInputModal.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div mdbModal #AcceptAppointmentInfoDialog="mdbModal" class="modal fade top employeesModal" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-body  text-center ">
+        <p>{{'updateSalon.AcceptAppointmentInfo' | translate}}</p>
+      </div>
+      <div class="modal-footer justify-content-center border-0 ">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" aria-label="Close"
+          (click)="AcceptAppointmentInfoDialog.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #AppointmentDelayIntervalDialog="mdbModal" class="modal fade top employeesModal" tabindex="-1"
+  role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: #b9b5b5 solid 1px;">
+        <p _ngcontent-seh-c120="" class="text-center modal-title w-100" style="font-weight: bold; font-size: larger;">
+          {{'updateSalon.AppointmentDelayIntervalTitle' | translate}}</p>
+      </div>
+      <div class="modal-body  text-center ">
+        <p>{{'updateSalon.AppointmentDelayIntervalInfo' | translate}}</p>
+      </div>
+      <div class="modal-footer justify-content-center border-0 ">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 text-white" aria-label="Close"
+          (click)="AppointmentDelayIntervalDialog.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for the new select buttons-->
+<div mdbModal #basicModalDemo="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content modal-custom-content">
+      <div class="modal-body">
+        <!-- Default checked -->
+        <div>
+          <div class="modal-checkbox-label">
+            <div class="modal-checkbox-label-text">
+              <label for="all">All</label>
+            </div>
+            <div class="checkbox-wrapper-33 row">
+              <span>
+                <label class="checkbox">
+                  <input class="checkbox__trigger visuallyhidden" id="all" type="checkbox"
+                    [(ngModel)]="selectAll[currentSelectedRow]" (change)="onSelectAllChange(); onHide()" />
+                  <span class="checkbox__symbol">
+                    <!-- <p class="checkbox__textwrapper">Checkbox</p> -->
+                    <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28"
+                      version="1" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                  </span>
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let user of daysDropdownList[currentSelectedRow]; index as i;" class="modal-checkbox">
+          <div class="checkbox-wrapper-33 row">
+
+            <span>
+              <label class="checkbox">
+                <input [id]="user.value" class="checkbox__trigger visuallyhidden" type="checkbox"
+                  [(ngModel)]="user.selected" (change)="onHide()" />
+                <span class="checkbox__symbol">
+                  <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28"
+                    version="1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 14l8 7L24 7"></path>
+                  </svg>
+                </span>
+              </label>
+            </span>
+            <span class="modal-checkbox-label-text">
+              <label [for]="user.value">{{user.value}}</label>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-done-button">
+        <button type="button" mdbBtn color="primary" class="done-custom btn btn-lg" mdbWavesEffect
+          (click)="basicModalDemo.hide(); onHide()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #addEmployeeModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content modal-custom-content">
+      <div class="modal-body">
+        <form [formGroup]="employeeForm">
+        <div class="user-profile-outer">
+          <a *ngIf="!imageSrc" href="#" class="user-profile-inner">
+            <i class="fas fa-user"></i>
+          </a>
+          <img *ngIf="imageSrc" [src]="imageSrc" alt="employee profile" class="employee_profile" />
+
+          <input class="" type="file" accept="image/*" #file (change)="employeeProfileInput($event)">
+          <a href="javascript:void(0)" (click)="file.click()" class="edit-btns"><i class="fas fa-pen"></i></a>
+        </div>
+        <div class="md-form topBox">
+          <div class="md-form">
+            <div class="row">
+              <div class="col-2">
+                <div class="prefix filled" [inlineSVG]="'assets/images/updatesalon/UserBlue.svg'"></div>
+              </div>
+              <div class="col">
+                <input mdbInput type="text" id="emp_name" class="form-control" formControlName="name">
+                <label id="salonPhoneNumber" for="emp_name">{{ 'updateSalon.EmployeeName' | translate }}</label>
+                <div *ngIf="employeeForm.invalid && employeeForm.controls.name.touched" class="row">
+                  <small *ngIf="employeeForm.controls.name.errors?.required"
+                    class="text-danger">{{'updateSalon.EmployeeNameIsRequired' |
+                    translate }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-done-button">
+        <button type="button" mdbBtn color="primary" class="done-custom btn btn-lg" mdbWavesEffect
+          (click)="saveEmployee()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="screenCover" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+
+<div class="btn-group mx-4" class="flags" mdbDropdown>
+    <mdb-badge class="dpFlags" mdbDropdownToggle classInside="dropdown-toggle" class="waves-effect blackc" mdbWavesEffect> {{ curLang}}
+    </mdb-badge>
+    <div class="dropdown-menu dropdown-primary">
+      
+      <a class="dropdown-item grayc" (click)="setLang('he')">Hebrew<img class="mr-2"  src="assets/flags/il.png" alt="il"></a>
+      <a class="dropdown-item grayc" (click)="setLang('en')">English<img class="mr-2" src="assets/flags/us.png" alt="il"></a>
+    </div>
+  </div>

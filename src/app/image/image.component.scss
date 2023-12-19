@@ -1,0 +1,153 @@
+.iconContainer1
+{
+    position: absolute;
+    top: 7px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 50%;
+    height: 31px;
+    width: 31px;
+    right:12px;
+    text-align: center;
+    //background: #ffffff9c;
+    //background: black;
+}
+
+.iconContainer2
+{
+    position: absolute;
+    right:55px;
+    top: 7px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 50%;
+    height: 31px;
+    width: 31px;
+    text-align: center;
+    //background: black;
+}
+.file-upload-message{
+    padding-top:6px;
+}
+
+.bg-image {
+    /* The image used */
+   // background-image: url("photographer.jpg");
+  
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  
+    /* Full height */
+    height: 400px;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-text
+  {
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .master
+  {
+  background-color: black;
+  }
+
+
+
+
+.fixed-bottom
+{
+    position: fixed !important;
+}
+
+
+
+  .galeryBody {
+    display: block;
+    overflow: scroll;
+    height: 23rem;
+}
+
+.col1 {
+    width: 10%;
+}
+
+.col2 {
+    width: 50%;
+}
+
+.col3 {
+    width: 30%;
+}
+
+.file-upload {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: 550px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    text-align: center;
+    color: #ccc;
+}
+
+.file-upload i {
+    font-size: 3rem;
+}
+
+.fileName {
+    width: 154px;
+    max-height: 20px;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    direction: ltr !important;
+}
+.fileSize {
+    width: 154px;
+}
+
+.file-upload-wrapper
+{
+    margin-top:30%;
+}
+
+.file-upload-wrapper .file-upload
+{
+  border:none;
+}
+
+.file-upload-wrapper .card.card-body .file-upload-message {
+    position: relative;
+    top: 50px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+}
+
+ 

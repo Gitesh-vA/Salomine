@@ -1,0 +1,51 @@
+.h-110px {
+    height: 110px !important;
+}
+
+.img_profile
+{
+    width: 110px !important;
+   height: 110px !important; 
+}
+
+.z-depth-1
+{
+    width:120px;
+    padding-top: 10px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.font
+{
+    font-size:smaller;
+    color:black
+}
+
+.modal-infoBtn
+{
+    position: absolute;
+    top:3px;
+    left:1.9rem;
+    width:16px;
+}
+
+.rec:last-child:nth-child(odd) {
+    max-width: 100% !important;
+    flex:0 0 100%;
+    }
+
+.icons
+{
+    height:35px;
+    width:35px;
+    display: inline-block;
+}
+
+.close
+{
+  //  left: 10px !important;
+    //top: 5px;
+    font-size: xx-large; 
+}

@@ -1,0 +1,52 @@
+.bg-profile2 {
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    z-index: 2;
+    width: 100px;
+    height: 100px;
+    border-radius: 180px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 28px auto 0px;
+  }
+
+  .sideBarHead {
+    padding-top: 30px;
+  }
+
+  .logo-wrapper {
+    height: 170px !important;
+    border-bottom: 2px solid rgba(153, 153, 153, 0.3) !important;
+  }
+
+  .optsrc
+  {
+    margin-right: 13px;
+  }
+
+  .profileNav {
+    //width: 60px !important;
+    margin: 10px auto;
+  }
+
+  #slide-out
+  {
+      overflow: hidden !important;
+  }
+
+  #slide-out *
+  {
+      direction: rtl !important;
+  }
+
+  .versionLbl
+{
+  position:absolute;
+  bottom:-14px;
+  left:40%;
+  color: #adadad;
+}
+  
+  

@@ -1,0 +1,162 @@
+
+
+
+
+    <app-header-nav  (triggerAction)="backEventOverride()"    customClass="fixed-top dynamic-private-bg-c6"  headerName="{{ 'HeaderNav.blockedUsers' | translate }}"></app-header-nav>
+
+
+    <div  *ngIf="isLoading">
+      <mdb-spinner class="centered"></mdb-spinner>
+    </div>
+    
+
+<div class="mt-3" *ngIf="!isLoading">
+  
+<div class="container text-center">
+   <p class="font-weight-bold small  search-form">{{ 'BlockUser.headerTxt' | translate }}</p>
+
+</div>
+<hr class="mb-1"/>
+<!-- Search form -->
+<form [formGroup]="From" >
+<div  class="md-form active-pink active-pink-2 mb-3" style="margin-bottom: 0px !important; margin-top: 0px !important; ">
+    <div class="row">
+        <div class="col-2"> 
+            <mdb-icon class="pt-1" fas icon="search" aria-hidden="true"></mdb-icon>
+        </div>
+        <div class="col-6"> 
+            <input [formControl]="phoneNum" [(ngModel)]="searchText"  name="search"   class="w-100 pt-1" placeholder="{{ 'BlockUser.typePhoneNumber' | translate }}" style="border-bottom: 0px !important" type="tel" id="search1" aria-label="Search" mdbInput>
+        </div>
+        <div class="col-4 text-center"> 
+            <button mdbBtn type="button" color="black" (click)="BlockUserModal()" class="m-0" outline="true" size="sm" mdbWavesEffect>{{ 'BlockUser.block' | translate }}</button>
+        </div>
+    </div>
+   
+  </div>
+</form>
+
+  <hr class="mt-1" />
+
+  <ul class="list-group">
+    <li  *ngFor="let model of Models | filter:searchText"  class="list-group-item d-flex justify-content-between align-items-center">
+      {{model.number}}
+      <mdb-icon (click)="unBlockUserModal(model.number)"  fas icon="ban" class="banClass"></mdb-icon>
+    </li>
+  </ul>
+
+
+
+
+
+
+
+
+
+
+<div mdbModal #blockUserModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <button type="button" class="close white-text pull-right" aria-label="Close" (click)="blockUserModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <p class="heading">{{ 'BlockUser.blockUser' | translate }}</p>
+      </div>
+
+
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ 'BlockUser.blockModal' | translate }} </p> 
+          </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect
+          (click)="blockUser(); blockUserModal.hide()">{{ 'Common.Yes' | translate }}
+        </a>
+
+        <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="blockUserModal.hide()">{{ 'Common.No' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+<div mdbModal #unblockUserModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <button type="button" class="close white-text pull-right" aria-label="Close" (click)="unblockUserModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <p class="heading">{{ 'BlockUser.unblockUser' | translate }}</p>
+      </div>
+
+
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ 'BlockUser.unblockModal' | translate }} </p> 
+          </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect
+          (click)="unblockUser(); unblockUserModal.hide();">{{ 'Common.Yes' | translate }}
+        </a>
+
+        <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="unblockUserModal.hide()">{{ 'Common.No' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+
+<div mdbModal #errorModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <button type="button" class="close white-text pull-right" aria-label="Close" (click)="errorModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <p class="heading"></p>
+      </div>
+
+
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ errorMsg }} </p> 
+          </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+
+      <a type="button" mdbBtn color="info"  class="waves-effect" mdbWavesEffect
+        (click)="errorModal.hide()">{{ 'Common.Ok' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+

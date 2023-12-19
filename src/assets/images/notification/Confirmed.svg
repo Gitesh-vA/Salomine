@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#acf5ce"/>
+      <stop offset="1" stop-color="#369964"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_4482" data-name="Group 4482" transform="translate(5045 -2124)">
+    <circle id="Ellipse_953" data-name="Ellipse 953" cx="25" cy="25" r="25" transform="translate(-5045 2124)" fill="url(#linear-gradient)"/>
+    <g id="Group_4481" data-name="Group 4481" transform="translate(-5034.366 2136.206)">
+      <path id="Icon_awesome-user-times" data-name="Icon awesome-user-times" d="M11.2,12.8A6.4,6.4,0,1,0,4.8,6.4a6.4,6.4,0,0,0,6.4,6.4Zm4.478,1.6h-.84a8.7,8.7,0,0,1-7.286,0H6.716A6.718,6.718,0,0,0,0,21.11v2.08a2.4,2.4,0,0,0,2.4,2.4H20a2.4,2.4,0,0,0,2.4-2.4V21.11a6.718,6.718,0,0,0-6.728-6.71Z" fill="#fff"/>
+      <g id="Group_4471" data-name="Group 4471" transform="translate(21.5 4.794)">
+        <line id="Line_762" data-name="Line 762" x2="2.5" y2="4.25" transform="translate(0 8)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+        <line id="Line_763" data-name="Line 763" x1="7.5" y2="12.2" transform="translate(2.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

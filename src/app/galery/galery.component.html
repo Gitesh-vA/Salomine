@@ -1,0 +1,115 @@
+<div class="screenCover" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<!-- Table  -->
+<table class="table" *ngIf="model && model.length > 0">
+
+
+  <!-- Table body -->
+  <tbody class="galeryBody">
+    <tr class="fullw" *ngFor="let item of model; index as i;">
+      <td class="col1">
+        <img (click)="updateImageObj(i); basicModal.show()"
+          src="{{this.host + item.thumbImagePath}}" width="40" height="40"
+          alt="...">
+      </td>
+      <td class="col2">
+        <p class="m-0 fileName" style="font-size: 14px; font-weight:bold;">{{item.fileName}}</p>
+        <p class="text-muted fileSize" style=" font-size: x-small; margin-top: 5px;">{{item.fileSizeInKB}} KB</p>
+      </td>
+      <td class="pt-3 col3 text-center">
+        <i class="far fa-trash-alt text-muted mb-0 mt-0" (click)="removePic(item._id)" style="margin: 16px;"></i>
+        <i class="far fa-eye text-muted " (click)="updateImageObj(i); basicModal.show()"></i>
+      </td>
+    </tr>
+  </tbody>
+
+  <!-- Table body -->
+</table>
+<!-- Table  -->
+
+
+
+
+
+<div class="file-upload-wrapper" *ngIf="!model || model.length==0">
+  <div *ngIf="!isMultiImagePicker"  class="card card-body view file-upload" (click)="filePicker.click()">
+    <div class="file-upload-message">
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p> {{ 'updateSalon.Photos.clickHereToUploadPhotos' | translate }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="isMultiImagePicker" class="card card-body view file-upload" (click)="advancedOnImagePicked()">
+    <div class="file-upload-message">
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p> {{ 'updateSalon.Photos.clickHereToUploadPhotos' | translate }}</p>
+    </div>
+  </div>
+
+</div>
+
+
+<input type="file" (change)="onImagePicked()" #filePicker>
+
+<div class="text-center" *ngIf="model && model.length>0">
+  <button mdbBtn type="button" color="primary" class="btn-block" (click)="previewImages(); basicModal.show();"
+    mdbWavesEffect>
+    <mdb-icon far icon="eye" class="mr-1"></mdb-icon>  {{ 'updateSalon.Photos.dispalyAllPhotos' | translate }}
+  </button>
+  <button  *ngIf="isMultiImagePicker" mdbBtn type="button" color="primary" class="btn-block" (click)="advancedOnImagePicked()" mdbWavesEffect>
+    <mdb-icon fas icon="cloud-upload-alt" class="mr-1 "></mdb-icon>  {{ 'updateSalon.Photos.uploadPhoto' | translate }}
+  </button>
+  <button  *ngIf="!isMultiImagePicker" mdbBtn type="button" color="primary" class="btn-block" (click)="filePicker.click()" mdbWavesEffect>
+    <mdb-icon fas icon="cloud-upload-alt" class="mr-1 "></mdb-icon>  {{ 'updateSalon.Photos.uploadPhoto' | translate }}
+  </button>
+</div>
+
+
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <mdb-image-modal [modalImages]="images" type="margin"></mdb-image-modal>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #accessRequestModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="advancePickImage(); accessRequestModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          saloTime does not have access to to your photo. to enable access , tap Settings and turn Photos on.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="info" class="waves-light"  (click)="accessRequestModal.hide()" aria-label="Close"
+          mdbWavesEffect>Cancel</button>
+          <button type="button" mdbBtn color="info" class="waves-light"  (click)="openAppSettings();" aria-label="Close"
+          mdbWavesEffect>Settings</button>
+    </div>
+  </div>
+</div>
+</div>
+
+ 

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
+  <g id="Group_4901" data-name="Group 4901" transform="translate(-16385 -19092)">
+    <circle id="Ellipse_834" data-name="Ellipse 834" cx="25" cy="25" r="25" transform="translate(16385 19092)" fill="#fff"/>
+    <circle id="Ellipse_834-2" class="dynamic_stroke_color" data-name="Ellipse 834" cx="22.49" cy="22.49" r="22.49" transform="translate(16387.512 19094.512)" fill="none" stroke="#33b5e5" stroke-width="1"/>
+    <path id="Icon_awesome-map-marker-alt" data-name="Icon awesome-map-marker-alt" d="M8.212,23.915C1.286,13.874,0,12.843,0,9.153a9.153,9.153,0,1,1,18.305,0c0,3.69-1.286,4.721-8.212,14.762a1.145,1.145,0,0,1-1.881,0Zm.941-10.948A3.814,3.814,0,1,0,5.339,9.153a3.814,3.814,0,0,0,3.814,3.814Z" transform="translate(16400.848 19104.813)" fill="#33b5e5"/>
+  </g>
+</svg>

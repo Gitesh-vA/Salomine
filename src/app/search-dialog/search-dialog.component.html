@@ -1,0 +1,35 @@
+
+
+
+
+
+<div class="container-fluid pl-0 pr-0">
+
+
+    <button type="button" class="close pt-1" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true" class="black-text">&times;</span>
+    </button>
+
+<div class="container text-center blue-bg search-form">
+  <input type="text"  (keyup)="keyup($event.target.value)" (keydown)="keydown($event.target.value)"  class="form-control inputSearch d-inline blue-text form-rounded" placeholder="{{'Home.searchDialog.placeHolderInput' | translate}}" >
+</div>
+
+ <div  *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+
+ <div class="list-group listS"  *ngIf="!isLoading">
+  <div *ngFor="let model of searchedSalons" > 
+    <a  (click)="modalRef.hide()" [routerLink]="['/salon-panel', model.userId]"   class="list-group-item list-group-item-action flex-column align-items-start transparentBG">
+        <div class="d-flex w-100 justify-content-between col-ms-4">
+            <h5 style="width:96px;">{{model.salonName}}</h5>
+           <img  [src]="this.host + model.profileimg100x100" class="imgStyle img-fluid z-depth-1 rounded-circle customClass" >             
+          <small class="text-muted text-center"  style="min-width:82px;"><span *ngIf="model.distance">{{model.distance}}km distance</span></small>
+        </div>   
+        <div class="row justify-content-center"><i class="fas fa-map-marker-alt"> </i> &nbsp;  <p class="mb-1"> {{model.address.location}}</p> </div>
+        <div class="row justify-content-center"><i class="fas fa-phone-square-alt"> </i>  &nbsp;  <p class="mb-1"> {{model.salonPhoneNumber}}</p> </div>    
+        <ngb-rating [(rate)]="model.finalrating.score" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>({{model.finalrating.voters}})
+      </a>
+    </div>    
+</div>

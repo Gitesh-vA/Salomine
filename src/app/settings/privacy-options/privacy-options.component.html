@@ -1,0 +1,32 @@
+<div *ngIf="activeWindow == 'home'">
+
+    <div (click)="openPrivacy()" class="row pt-1-4">
+        <div class="col-2 text-center">
+            <img class="optsrc" src="assets/images/settings/Privacy.svg" alt="account">
+        </div>
+        <div class="col-10 text-left-right2 font-weight-bold pr-2">
+            {{ 'settings.Privacy' | translate }}
+        </div>
+    </div>
+
+
+    <div (click)="opnenUserBlock()" class="row pt-4">
+        <div class="col-2 text-center">
+            <img class="optsrc" src="assets/images/settings/Blocking.svg" alt="account">
+        </div>
+        <div class="col-10 text-left-right2 font-weight-bold pr-2">
+            {{ 'HeaderNav.blockedUsers' | translate }}
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="activeWindow == 'privacy'">
+    <app-privacy></app-privacy>
+</div>
+<div *ngIf="activeWindow == 'usrBlock'">
+    <app-blocked-users></app-blocked-users>
+</div>
+
+
+

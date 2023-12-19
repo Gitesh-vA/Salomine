@@ -1,0 +1,16 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<ul class="list-group pt-1-4 p-0" >
+
+    <li class="list-group-item d-flex justify-content-between align-items-center" (click)="setLang('en')" [ngClass]="activeLang == 'en'  ? 'font-weight-bold text-dark' : '' " >
+      {{ 'settings.LanguageContent.English' | translate }}   
+       <mdb-icon *ngIf="activeLang == 'en' " fas icon="check"></mdb-icon>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center" (click)="setLang('he')" [ngClass]="activeLang == 'he'  ? 'font-weight-bold text-dark' : '' " >
+        {{ 'settings.LanguageContent.Hebrew' | translate }}
+        <mdb-icon *ngIf="activeLang == 'he' " fas icon="check"></mdb-icon>
+    </li>
+
+  </ul>

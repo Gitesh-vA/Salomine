@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+* body {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-family: Lato;
+  color: #294b69;
+}
+
+.form-control {
+  border-radius: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.logo_bg {
+  width: 70%;
+  height: 200px;
+  left: 16%;
+  top: 40%;
+  opacity: 0.3;
+  position: absolute;
+  z-index: 9999999;
+}
+
+tr {
+  color: #333;
+  font-family: "Montserrat";
+}
+
+strong {
+  color: indigo;
+}
+
+h3,
+h5 {
+  font-family: "Montserrat";
+  font-weight: 700;
+  color: #294b69;
+}
+
+.container {
+  background: #fff;
+  padding: 20px;
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 5px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    padding: 40px;
+  }
+}
+
+.form-rounded {
+  border-radius: 1rem;
+}
+
+.inputSearch {
+  font-size: small;
+  font-weight: bold;
+}
+
+.search-form {
+  padding: 1.8rem !important;
+}
+/* #house, #city {
+  width:70% !important;
+} */
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+}
+
+.customClass {
+  height: 70px;
+  width: 70px;
+}
+
+.container-fluid {
+  height: 85%;
+}
+
+.listS {
+  height: 100%;
+  overflow: auto;
+}
+
+::-webkit-input-placeholder {
+  color: #10b4fa;
+}
+
+:-ms-input-placeholder {
+  color: #10b4fa;
+}
+
+::placeholder {
+  color: #10b4fa;
+}

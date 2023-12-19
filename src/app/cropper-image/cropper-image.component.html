@@ -1,0 +1,32 @@
+<div class="fullWH" *ngIf="isLoading">
+    <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+
+<div style="background-color:black;" *ngIf="!isLoading" [style.height.px]="[this.ScreenHeight]" [ngClass]="{'myCSSclass' : zeroOp}">
+    <p class="text-center white-text p-1">{{ 'cropperImg.MoveAndScale' | translate }}</p>
+
+
+    <div class="container" [style.padding-top.px]="[this.screenGap]">
+        <input #myinput type="file" (change)="fileChangeEvent($event)" />
+        <div [ngClass]="{'myCSSclass' : zeroOp}">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [imageBase64]="imgData" roundCropper="true"
+                hideResizeSquares="true" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [cropper]="cropper"
+                format="png" allowMoveImage="true" onlyScaleDown=true cropperMinWidth="300" cropperMinHeight="300"
+                (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <label style="position: absolute; bottom: 10px; right: 20px;" (click)="uploadPic()"
+                class="white-text">{{ 'cropperImg.Choose' | translate }}</label>
+        </div>
+        <div>
+            <label style="position: absolute; bottom: 10px; left: 20px;" (click)="cancelEvent()"
+                class="white-text">{{ 'cropperImg.Cancel' | translate }}</label>
+        </div>
+    </div>
+
+</div>

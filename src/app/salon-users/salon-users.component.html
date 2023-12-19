@@ -1,0 +1,105 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+
+
+<div class="container" >
+    
+<app-header-nav navLink="/salonUsers" customClass="fixed-top dynamic-private-bg-c6"  isHasList="false"
+headerName="{{ 'Home.sideBar.Customers' | translate }}"></app-header-nav>
+
+
+<mdb-navbar SideClass="navbar fixed-top-custom  dynamic-private-bg-c6 navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
+  [containerInside]="false">
+
+  <navlinks class="w-100 navbar-page">
+    <!-- SideNav slide-out button -->
+    <div class="d-flex justify-content-around bd-highlight w-100">
+      <div class="p-1 bd-highlight navbaritem p-0" id="autoAccepted" [ngClass]="{ 'topborder active':activeTab==='salonUsers'}">
+        <a class="nav-link p-0" style="text-align:center;" (click)="changeActiveTab('salonUsers')"
+          [ngClass]="{ 'active text-primary':activeTab==='salonUsers'}">
+          <p class="m-0">{{'salonUsers.autoAccepted'  | translate }}</p>
+        </a>
+      </div>
+      <div class="p-1 bd-highlight navbaritem p-0" id="booked" style="text-align:center;"
+        [ngClass]="{ 'topborder active':activeTab==='waitingAppointments'}">
+        <a class="nav-link p-0" (click)="changeActiveTab('waitingAppointments')"
+          [ngClass]="{ 'active text-primary':activeTab==='waitingAppointments'}">
+          <p class="m-0 font-weight-bold">{{'salonUsers.booked'  | translate }}</p>
+        </a>
+      </div>
+    </div>
+  </navlinks>
+
+
+</mdb-navbar>
+
+
+<div [class.displayOff]="activeTab != 'salonUsers'" class="mt-75"  *ngIf="!isLoading">
+  <!--<ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of salonData; index as i;" >{{item.name}}</li>
+    </ul>-->
+
+    <div *ngIf="!salonData || salonData.length == 0" class="text-center pt-5 p-3">
+      <div>
+        <mdb-icon style="font-size: 50px;" fas icon="users"></mdb-icon>
+      </div>
+
+      <div>
+        <p class="font-weight-bold">{{'salonUsers.autoAceeptEmptyMessageHeader'  | translate }}</p>
+        <p>{{'salonUsers.autoAcceptEmptyMessageBody'  | translate }}</p>
+      </div>
+    </div>
+
+    
+    
+    <div class="row mt-3" *ngFor="let item of salonData; index as i;">
+      <div class="col-3 pt-2">
+        <button mdbBtn type="button" outline="true" class="p-0 outlineBtn dynamic-private-border-c2 dynamic-private-c2" (click)="openBottomModal(item.number); "  mdbWavesEffect>{{'Common.delete' | translate}}</button>
+      </div>
+      <div class="col-6 text-left-right p-0 pt-2">
+            <p class="m-0 font-weight-bold text-dark" style="font-size:small;">  {{item.name}}</p>
+            <p style="font-size: small;">{{item.number}}</p>
+      </div>
+      <div class="col-2 p-0">
+        <div class="notification-list_img col-3">                  
+          <div class="ncontainerp">
+              <div class="outerp" (click)="loadImage(host + item.profilePath,item.belongToUserName,item.belongToUserNumber); infoModal.show();" [ngStyle]="{'background-image': item.profilePath40x40 ? 'url(' + this.host + item.profilePath40x40 + ')' : 'url(assets/images/defaultProfilePic.png)' }"  >
+                <div class="innerp">
+                  <img  src="assets/images/notification/Confirmed.svg"  style="height: 28px; width: 28px;  display: inline-block;"  alt=""> 
+                </div>
+              </div>
+            </div>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div  mdbModal #bottomModal="mdbModal"  class="modal fade bottom" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-bottom p-0 mt-0 " role="document">
+    <div class="modal-content" style="position:absolute; bottom:0px; border-radius: 20px 20px 0px 0px;">
+      <div class="modal-body p-0">
+
+       <p class="text-center pt-3 blackColor">{{'salonUsers.deleteAutoAccept'  | translate }} </p>
+       
+       
+       <button mdbBtn type="button" (click)="removeUserFromSalon()" class="dynamic-private-bg-c2 text-white " block="true"  mdbWavesEffect>{{'Common.delete'  | translate }} </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div [class.displayOff]="activeTab != 'waitingAppointments'" class="mt-7" >
+  <app-notification-template   (notifyParent)="msgFromParent($event)" [notificationType]="notificationType" ></app-notification-template>
+</div>
+
+</div>
+
+<mdb-side-nav #sidenav class="fixed side-nav-light left-navbar-side" [fixed]="true"><app-navbar isSalonView="true"></app-navbar></mdb-side-nav>
+<app-bottom-nav-bar (showNavbar)="sidenav.show()"></app-bottom-nav-bar>

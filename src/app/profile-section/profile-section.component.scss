@@ -1,0 +1,26 @@
+/* buttons */
+
+.button {
+    border: none;
+    color: white;
+    padding: 4px 18px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 3%;
+    cursor: pointer;
+  }
+  
+  /* rounded buttons */
+  
+  .btn.rounded {
+    border-radius: 20px; 
+    color:  #8d8d8d  !important;}
+  
+  
+  /* rounded w/o fill buttons */
+  
+  .btn.rounded.outline {
+      background-color: #ffffff;
+      border: 2px solid #8d8d8d; }

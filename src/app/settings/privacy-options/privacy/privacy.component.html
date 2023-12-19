@@ -1,0 +1,26 @@
+<app-header-nav  (triggerAction)="backEventOverride()"    customClass="fixed-top dynamic-private-bg-c6"  headerName="{{headerName}}"></app-header-nav>
+
+
+<div class="row pt-1-4">
+
+    <div class="col-9 text-left-right2 font-weight-bold text-dark"  >
+        {{ 'Home.sideBar.Private' | translate }}
+    </div>
+
+    <div class="col-3">
+        <!-- Material switch -->
+        <div class="switch mdb-color-switch">
+            <label>
+                <input *ngIf="isChecked"  class="mdb-color-switch"id="1"
+                    (change)="changeConfirmTypeState($event)" type="checkbox" checked>
+                    <input *ngIf="!isChecked"  class="mdb-color-switch" id="1"
+                    (change)="changeConfirmTypeState($event)" type="checkbox" >
+                <span class="lever mdb-color-switch"></span>
+            </label>
+        </div>
+    </div>
+
+</div>
+
+
+<p class="pl-4 pr-4 pt-3  text-left-right2">{{ "settings.privacyContent.body"| translate }}</p>

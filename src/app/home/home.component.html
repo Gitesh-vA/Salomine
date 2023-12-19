@@ -1,0 +1,241 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<!--Double navigation-->
+<header>
+  <!-- Sidebar navigation -->
+  <mdb-side-nav #sidenav class="fixed side-nav-light left-navbar-side"  [fixed]="true">
+  <app-navbar currentPage="home" (displayDeleteAccountModal)="displayDeleteAccountModal()" ></app-navbar>
+  </mdb-side-nav>
+
+
+
+  <div mdbModal #loginAlertModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close pull-top" aria-label="Close" (click)="loginAlertModal.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body font-weight-bold text-center">
+      {{ 'Common.LoginRequired' | translate }}
+    </div>
+    <div class="modal-footer text-center justify-content-center">
+      <button type="button" mdbBtn color="info" class="waves-light text-center" (click)="navigateToLogin();" aria-label="Close"
+        mdbWavesEffect> {{ 'Common.Login' | translate }}</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+  <!-- Navbar -->
+<!--  <mdb-navbar SideClass="navbar wbg fixed-bottom navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
+    [containerInside]="false">
+
+    <navlinks class="w-100">
+      <!-- SideNav slide-out button 
+      <div class="d-flex justify-content-around bd-highlight w-100">
+        <div class="bd-highlight navbaritem">
+          <a (click)="sidenav.show()" class="nav-link">
+            <mdb-icon fas icon="bars"></mdb-icon>
+          </a>
+        </div>
+        <div class="bd-highlight navbaritem" [ngClass]="{ 'topborder':activeTab==='Recent'}">
+          <a class="nav-link" (click)="changeActiveTab('Recent'); getRecently();"
+            [ngClass]="{ 'active text-primary':activeTab==='Recent'}"><i class="fas fa-history"></i> </a>
+        </div>
+        <div class="bd-highlight navbaritem" [ngClass]="{ 'topborder':activeTab==='Favorite'}">
+          <a class="nav-link" (click)="changeActiveTab('Favorite'); getFavorites();"
+            [ngClass]="{ 'active text-primary':activeTab==='Favorite'}">
+            <mdb-icon fas icon="star"></mdb-icon>
+          </a>
+        </div>
+        <div class="bd-highlight navbaritem" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/salon-panel">
+            <mdb-icon fas icon="store"></mdb-icon>
+            <img [src]="this.smallProfileImg" style="width: 25px; height:25px" class="img-fluid z-depth-1 rounded-circle"
+            alt="Responsive image">
+          </a>
+        </div>
+        <div class="bd-highlight navbaritem" *ngIf="!isAdmin">
+          <a class="nav-link" routerLink="/my-appointment">
+            <mdb-icon fas icon="user-clock"></mdb-icon>
+          </a>
+        </div>
+      </div>
+    </navlinks>
+  </mdb-navbar>-->
+
+</header>
+<main class="main p-l-custom" *ngIf="!isLoading">
+
+  <mdb-carousel #carouselRef [isControls]="true" id="maincarousel" class="carousel slide carousel-fade" [animation]="'fade'">
+    <mdb-carousel-item *ngFor="let obj of photos">
+        <img class="d-block w-100 imgH"  src="{{obj.path}}" alt="{{obj.title}}">
+    </mdb-carousel-item>
+  </mdb-carousel>
+
+
+
+<!--/.Double navigation-->
+<div class="container" style="height:100px;">
+  <div class="row align-items-center" id="carosell-icon">
+    <div class="carosell-icon-body">
+
+        <div *ngFor="let cat of categories; let i = index" class="carosell-icon"><a
+            (click)="getModelByCategories(categories[i].id)">
+	
+            <img class="image-icon"  [src]="selectedID ==  categories[i].id ? categories[i].selected_path : categories[i].path">	
+            <div class="text text-center" id="float-buttons-text">
+              <p id="float-button-textStyle">{{categories[i].name}}</p>
+            </div>
+          </a></div> 
+    </div>
+  </div>
+</div>
+
+
+        <div class="img_btn_container mb-4">
+          <img src="assets/images/mainicons/Search.svg" alt="Snow" style="width:90%;">
+          <input type="text"  (keyup)="keyup($event.target.value)"  (focus)="focusFunction()" (focusout)="focusOutFunction()" (keydown)="keydown($event.target.value)"  class="input_search_centered" placeholder="{{'Home.searchDialog.placeHolderInput' | translate}}" >
+        </div>
+        
+
+        <div class="wrapper mb-5">
+          <div class="searchBar">
+            <input id="searchQueryInput" type="text"  (keyup)="keyup($event.target.value)"  (focus)="focusFunction()" (focusout)="focusOutFunction()" (keydown)="keydown($event.target.value)" placeholder="{{'Home.searchDialog.placeHolderInput' | translate}}" >
+            <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+              </svg>
+            </button>
+          </div>
+        </div> 
+
+
+      <div mdbModal #exceededAppointmentLimit="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+          <!--Content-->
+          <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+            </div>
+      
+            <!--Body-->
+            <div class="modal-body">
+              <p class="font-weight-bold">{{ 'Appointment.thisSalonHasReachedTheirAppointmentLimit' | translate }}</p>
+            </div>
+      
+             <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" mdbBtn color="info"  class="waves-effect" mdbWavesEffect
+                 (click)="exceededAppointmentLimit.hide()">{{ 'Common.Close' | translate }}
+               </a>
+           </div>
+      
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+
+<div *ngIf="isBottomLoading">
+  <mdb-spinner class="centered BottomLoadingTop"></mdb-spinner>
+</div>
+
+
+<section class="ftco-section ftco-no-pt ftc-no-pb" *ngIf="!isBottomLoading">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 wrap-about mb-6 py-12 pr-md-12">
+        <div class="row mt-1"  infiniteScroll
+        [infiniteScrollDistance]="scrollDistance"
+        (scrolled)="onScroll()" >
+
+
+          <div   *ngFor="let model of models; let i = index" class="col-md-6 card-content">
+
+        
+            <div class=" d-flex card-body pt-0" (click)="navigateToSalon(model.userId)" >
+              <div class="right-list">
+                <p class="right-letter">
+                  {{model.distance}}km
+                </p>
+              </div>
+              <div  class="text orderList" style="width:250px" >
+                <p id="pHeader" dir="rtl" class="rtl salonName">{{model.salonName}}</p>
+                <p dir="rtl" class="rtl"> <mdb-icon class="lightBlue" far icon="clock"></mdb-icon> {{ model.openHour}} </p>
+                <p dir="rtl" class="rtl locationBox" ><mdb-icon class="lightBlue" fas icon="map-marker-alt"></mdb-icon> {{ model.address.location}} </p>
+              </div>
+              <div class="image-reg">
+                <img class="main-images" [src]="this.host + model.profileimg100x100 "/>
+              </div>
+            </div>
+            <div class="button-region">
+              <div>
+                <div *ngIf="isUserLogin" class="img_btn_container">
+               <!--   <img src="assets/images/mainicons/a_button.png" alt="Snow" style="width:90%;"> -->
+                  <div class="diagonal-split-background2"></div>
+                  <div (click)="openReservationApp(model)"  class="img_text_centered">{{ 'MySalon.Appointment' | translate }}</div>
+                </div> 
+                <div class="img_btn_container pt-1"  *ngIf="isDebugMode"  >
+                  <div class="diagonal-split-background2"></div>
+                  <div [routerLink]="['/SalonAppointmentsComponent', { id: model.userId,salonName:model.salonName}]"  class="img_text_centered">appointments</div>
+                </div> 
+                <!-- Material switch -->
+                <div class="switch mdb-color-switch" *ngIf="isDebugMode" >
+                  <label>
+                    invisible
+                    <input class="mdb-color-switch"   *ngIf="model.isVisible == 'true'" id="1"
+                    (change)="changeConfirmTypeState($event,model.userId)" type="checkbox" checked>
+                  <input class="mdb-color-switch" *ngIf="model.isVisible != 'true'" id="2"
+                    (change)="changeConfirmTypeState($event,model.userId)" type="checkbox">
+                    <span class="lever"></span> visible
+                  </label>
+                </div>
+
+                <div class="switch mdb-color-switch" *ngIf="isDebugMode" >
+                  <label>
+                    payment off
+                    <input class="mdb-color-switch"   *ngIf="model.PaymentEnabled == true" id="1"
+                    (change)="editPaymentStatus($event,model.userId)" type="checkbox" checked>
+                  <input class="mdb-color-switch" *ngIf="model.PaymentEnabled != true" id="2"
+                    (change)="editPaymentStatus($event,model.userId)" type="checkbox">
+                    <span class="lever"></span> on
+                  </label>
+                </div>
+
+              
+
+
+              </div>
+              <div class="star">
+                <p class="star-region"><span class="fa fa-star star-checked"></span><span class="mark">  {{model.finalrating.score}} </span><span> ({{model.finalrating.voters}})</span></p>
+              </div>
+            </div>
+          
+          </div>										
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<app-bottom-nav-bar *ngIf="!isSearchTextFocus" [notificationNumber]="newNotificationCount" (showNavbar)="showNavBar()"></app-bottom-nav-bar>
+
+
+
+

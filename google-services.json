@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "641678892052",
+    "firebase_url": "https://mysalon1.firebaseio.com",
+    "project_id": "mysalon1",
+    "storage_bucket": "mysalon1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641678892052:android:ef8312ec09b5a486899b01",
+        "android_client_info": {
+          "package_name": "mysalon.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641678892052-ntup1uh7405l03e87695ghuk361qi2he.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAKAz1jYeiOLCkyEaocDeq0UlF1jdz3Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641678892052-ntup1uh7405l03e87695ghuk361qi2he.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641678892052:android:1ed7276a3f216e78899b01",
+        "android_client_info": {
+          "package_name": "salotime.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641678892052-ntup1uh7405l03e87695ghuk361qi2he.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAKAz1jYeiOLCkyEaocDeq0UlF1jdz3Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641678892052-ntup1uh7405l03e87695ghuk361qi2he.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

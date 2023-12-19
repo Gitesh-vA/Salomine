@@ -1,0 +1,54 @@
+<div class="modal-dialog modal-notify modal-info"  *ngIf="content.isSuccessDialog" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Header-->
+    <div class="modal-header">
+      <p class="heading lead">
+        {{content.title}}
+      </p>
+
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true" class="white-text">&times;</span>
+      </button>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+      <div class="text-center">
+        <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+        <p>{{ content.bookTime }}</p>
+        <p>{{ content.Date }}</p>
+        <p>{{ content.Servercies }}</p>
+      </div>
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-center">
+      <a type="button" (click)="modalRef.hide(); navigator()" mdbBtn  class="waves-effect dynamic-private-bg-c6"
+        mdbWavesEffect>{{ content.navigateToLabel }}
+      </a>
+
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+
+<div     role="document"  *ngIf="!content.isSuccessDialog"> 
+    <div class="modal-content" style="border-radius: 2rem; border: none; color:black;">
+    <img src="assets/images/Pending.svg" class="pendingImg" alt="">
+    <p class="text-center mt-6">{{'MyAppointment.pedning'  | translate }}</p>
+    <p class="mt-2 text-center" style="font-size: 17px; color: black; font-weight: bolder;">{{'MyAppointment.untilAccept'  | translate }}</p>
+
+    <div class="text-center">
+      <p>{{ content.bookTime }}</p>
+      <p>{{ content.Date }}</p>
+      <p>{{ content.Servercies }}</p>
+    </div>
+
+    <div _ngcontent-mqw-c22="" class="modal-body p-0 pt-2"><button   data-dismiss="modal" aria-label="Close"  (click)="modalRef.hide()" _ngcontent-mqw-c22="" block="true" color="primary" mdbbtn="" mdbwaveseffect="" type="button" class="btn btn-primary btn-block" ng-reflect-color="primary" ng-reflect-block="true" style="
+        background-color: #10b4fa !important;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    ">{{'Common.Ok'  | translate }}</button></div>
+    </div>
+</div>

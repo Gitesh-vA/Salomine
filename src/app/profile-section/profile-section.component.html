@@ -1,0 +1,17 @@
+<div class="screenCover" *ngIf="isLoading">
+    <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<div class="row">
+    <div class="col-12  text-center">
+  
+      <img [src]="thumbProfileImg" style="width:120px; height:120px;" class="img-fluid z-depth-1 rounded-circle"
+        alt="Responsive image">
+  
+    </div>
+        <div class="col-12 text-center">
+            <input type="file" (click)="$event.target.value=null;"  (change)="onImagePicked($event)" #filePicker>
+            <a class="button btn rounded outline" (click)="filePicker.click()" >{{'Profile.editprofile' | translate }}</a>
+        </div>
+
+  </div>

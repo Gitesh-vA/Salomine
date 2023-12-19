@@ -1,0 +1,26 @@
+.flags
+{
+  position:absolute; 
+  left:20px;
+  top: 20px;
+}
+
+.flags *
+{
+  direction:rtl !important;
+}
+
+.dpFlags
+{
+    background-color:#33b5e5!important;
+}
+
+.badge
+{
+    box-shadow:none !important;
+}
+
+.blackc
+{
+  color: #616161 !important;
+}

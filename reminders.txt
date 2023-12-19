@@ -1,0 +1,1 @@
+instal unversal link from here => https://www.npmjs.com/package/cordova-plugin-universal-link

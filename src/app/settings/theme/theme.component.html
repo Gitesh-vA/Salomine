@@ -1,0 +1,26 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+   
+   <div *ngIf="!isLoading" class="container text-center pt-3">
+      <p class="text-center font-weight-bold text-muted">     {{ 'settings.ThemesContent.changeSalonDesign' | translate }}</p>
+
+
+      <ng-container *ngFor="let data of colorsData; index as i;" >
+        <div class="row margTop center" (click)="setActive(data.id,data.colors,data.cName)">
+          <div class="col-2">
+            <mdb-icon   class="rb checked" *ngIf="activeColor == data.id"  fas icon="check-circle"></mdb-icon>
+            <mdb-icon   class="rb" *ngIf="activeColor != data.id"  far icon="circle"></mdb-icon>
+          </div>
+          <div class="col-9">
+            <div   [ngStyle]="{'background-image': 'linear-gradient(to right, '+ data.colors.c1 + ', '+ data.colors.c6 + ')'}"   [class.active]="activeColor == data.id" class="winter-neva-gradient color-block mb-3 mx-auto z-depth-1-half p-4"></div>
+          </div>
+        </div>
+      </ng-container>
+
+    
+    </div>
+
+         <!-- <div (click)="changeTheme(3,'pink','#E6AACE','#ED7E6D','#F8CFCA','#F277B6','#E09589','#F277B6','#F4A6CF');" [class.active]="activeColor == 3" [ngStyle]="{'background-image': 'linear-gradient(to right, rgba(255,0,0,0), '+ color + ')'}"  class="ripe-malinka-gradient color-block mb-3 mx-auto z-depth-1-half p-4"></div> --> 
+
+ 

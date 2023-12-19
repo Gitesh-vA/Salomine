@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 50 50">
+  <g id="Group_4900" data-name="Group 4900" transform="translate(-16295 -19177)">
+    <circle id="Ellipse_834"  class="dynamic_fill_color" data-name="Ellipse 834" cx="25" cy="25" r="25" transform="translate(16295 19177)" fill="#33b5e5"/>
+    <circle id="Ellipse_834-2" class="dynamic_fill_color" data-name="Ellipse 834" cx="22.49" cy="22.49" r="22.49" transform="translate(16297.51 19179.512)" fill="none" stroke="#fff" stroke-width="1"/>
+    <path id="Path_1795" data-name="Path 1795" d="M15.466,4.025A3.825,3.825,0,0,1,19.28,7.839v7.627a3.825,3.825,0,0,1-3.814,3.814H7.839a3.825,3.825,0,0,1-3.814-3.814V7.839A3.825,3.825,0,0,1,7.839,4.025h7.627m0-1.525H7.839A5.355,5.355,0,0,0,2.5,7.839v7.627a5.355,5.355,0,0,0,5.339,5.339h7.627a5.355,5.355,0,0,0,5.339-5.339V7.839A5.355,5.355,0,0,0,15.466,2.5Z" transform="translate(16308.348 19190.348)" fill="#fff"/>
+    <path id="Path_1796" data-name="Path 1796" d="M9.65,7.383A2.266,2.266,0,1,1,7.383,9.65,2.266,2.266,0,0,1,9.65,7.383m0-1.133a3.4,3.4,0,1,0,3.4,3.4A3.4,3.4,0,0,0,9.65,6.25Z" transform="translate(16310.351 19192.352)" fill="#fff"/>
+    <circle id="Ellipse_835"  data-name="Ellipse 835" cx="1.308" cy="1.308" r="1.308" transform="translate(16323.243 19196.143)" fill="#fff"/>
+  </g>
+</svg>

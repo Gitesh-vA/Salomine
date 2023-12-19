@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_126" data-name="Ellipse 126" cx="25" cy="25" r="25" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fa5c65"/>
+      <stop offset="1" stop-color="#a8140b"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2701" data-name="Group 2701" transform="translate(8947 -10315)">
+    <g id="Group_2700" data-name="Group 2700" transform="translate(-8947 10315)">
+      <g id="Group_2699" data-name="Group 2699">
+        <g id="Group_2698" data-name="Group 2698">
+          <g id="Group_2697" data-name="Group 2697">
+            <g id="Mask_Group_279" data-name="Mask Group 279" clip-path="url(#clip-path)">
+              <g id="Group_4348" data-name="Group 4348" transform="translate(0.001 0)">
+                <circle id="Ellipse_925" data-name="Ellipse 925" cx="25" cy="25" r="25" fill="url(#linear-gradient)"/>
+                <path id="Icon_awesome-user-times" data-name="Icon awesome-user-times" d="M32.391,11.6l2.5-2.5a.885.885,0,0,0,0-1.25L33.641,6.6a.885.885,0,0,0-1.25,0l-2.5,2.5-2.5-2.5a.885.885,0,0,0-1.25,0l-1.25,1.25a.885.885,0,0,0,0,1.25l2.5,2.5-2.5,2.5a.885.885,0,0,0,0,1.25l1.25,1.25a.885.885,0,0,0,1.25,0l2.5-2.5,2.5,2.5a.885.885,0,0,0,1.25,0l1.25-1.25a.885.885,0,0,0,0-1.25ZM12.306,12.475Zm4.922,1.757h-.917a9.564,9.564,0,0,1-8.01,0H7.384A7.386,7.386,0,0,0,0,21.621v2.285A2.637,2.637,0,0,0,2.636,26.54H21.975A2.638,2.638,0,0,0,24.611,23.9V21.621a7.386,7.386,0,0,0-7.384-7.384Z" transform="translate(9.375 12.523)" fill="#fff"/>
+              </g>
+            </g>
+            <circle id="Ellipse_130" data-name="Ellipse 130" cx="6.875" cy="6.875" r="6.875" transform="translate(15 11.25)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

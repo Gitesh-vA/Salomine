@@ -1,0 +1,787 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<div *ngIf="!isLoading"   class="salonPage mb-6 p-l-custom" (scrolled)="onScrollDown()">
+
+  <mdb-image-modal  #modalProfileImage  [modalImages]="profileImage" type="fullscreen" class="m-0 p-0 w-100 fullscreen"></mdb-image-modal>
+
+
+  <app-header-nav (shareFunc)="shareWith()"  #appDashboard navLink="/home" customClass="salonBar fixed-top"   isOwner="{{isOwner}}" isHasList="false"
+    headerName="{{navbarLabel}}" isHavingStore="{{isHaveStore}}" isVisible="{{isVisible }}"></app-header-nav>
+
+    <input type="file" (click)="$event.target.value=null; uploadProfileBtn();"   (change)="onImagePicked2($event)" #filePicker>
+    
+  <!--Main Layout-->
+  <main class="main">
+    <div class="container-fluid">
+      <agm-map [zoom]="10.5" style="z-index:99999;" [latitude]="lat" [longitude]="lng" (mapClick)="addMarker(lat,lng)" #mapelem>
+        <agm-marker [latitude]="lat - 0.09" [longitude]="lng"></agm-marker>
+      </agm-map>
+
+      
+      <div class="frame"  >  
+        <div class="corner-container"> 
+          <div class="row">
+            <div class="col-4">
+              <div class="shareIconContainer" (click)="shareWith()">
+                <mdb-icon fas class="img-fluid shareIcon" icon="share-alt"></mdb-icon>
+              </div>
+            </div>
+            <div class="col-4">
+              <div   class="notificationContainer" (click)="navigateByGoogle()">
+                <mdb-icon fas class="shareIcon" icon="map-marker-alt"></mdb-icon>
+              </div>
+            </div>
+            <div class="col-4">
+              <div   class="notificationContainer" (click)="navigateByWaze()">
+                <mdb-icon fab class="shareIcon"  icon="waze"></mdb-icon>
+              </div>
+            </div>
+
+          </div>
+
+      </div>    
+      <!--  <div  *ngIf="this.isOwner" class="notificationContainer colorPicker" (click)="colorModals.show()">
+          <mdb-icon fas icon="palette"></mdb-icon>
+        </div>-->
+       <!--<div *ngIf="isOwner" class="notificationContainer" (click)="openNotification()">
+          <mdb-icon fas icon="bell" class="bell" ></mdb-icon>
+          <span *ngIf="newNotificationCount > 0"  class="counter">{{newNotificationCount}}</span>
+        </div>--> 
+        <div class="profileName">
+          {{model.salonName}}
+        </div>
+
+        <div class="ncontainerp"  >
+
+          <div class="outerp profileImg"  (click)="previewImage();" [ngStyle]="{'background-image': 'url(' +  this.img100x100Path + ')'}" >
+
+              <div   class="innerp"  *ngIf="isOwner"  (click)="addMarker2()">
+                <mdb-icon fas  (click)="uploadProfileBtn(); filePicker.click(); $event.stopPropagation();"   icon="pen" class="location-arrow editBtn"   ></mdb-icon>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="badge_frame">
+        <mdb-badge pill="true" class="badge" default="true">{{model.address.location}}</mdb-badge>
+      </div>
+  
+
+
+      <div class="buttonNavs"   *ngIf="!userIsBlocked"  >
+        <ul class="nav justify-content-between nav_icons ltr ml-2 mr-2">
+      
+          <li class="nav-item" *ngIf="isHaveStore">
+            <a mdbBtn floating="true" class="plus_icon floating-button"  size="sm" (click)="scroll($event,storeEl)"
+              mdbWavesEffect>
+              <mdb-icon fas icon="store"></mdb-icon>
+            </a>
+            <p class="iconLabel">{{ 'Store.Store' | translate }}</p>
+          </li>
+
+          <li class="nav-item" *ngIf="isOwner && !isHaveStore">
+            <a mdbBtn floating="true" class="plus_icon floating-button"  size="sm" (click)="navigateToStore()"
+              mdbWavesEffect>
+              <mdb-icon fas icon="store"></mdb-icon>
+            </a>
+            <p class="iconLabel">{{ 'Store.openStore' | translate }}</p>
+          </li>
+
+          
+          <li class="nav-item" *ngIf="whatsApp">
+
+            <a (click)="sendWhatsApp($event);  whatsAppTrigger.click()" mdbBtn floating="true"
+              [ngClass]="(whatsApp != '') ? 'floating-button':'floating-button-disabled'" class="plus_icon" size="sm"
+              mdbWavesEffect>
+              <mdb-icon fab icon="whatsapp"></mdb-icon>
+            </a>
+            <a #whatsAppTrigger href="https://wa.me/{{whatsApp}}/?text="></a>
+            <p class="iconLabel" [ngClass]="(whatsApp != '') ? '':'disabled-text'">
+              {{ 'MySalon.Whatsapp' | translate }}</p>
+          </li>
+          
+          <li class="nav-item" *ngIf="!isOwner">
+            <a *ngIf="curOp != 'IOS'" (click)="stopPropagation($event)" href="tel:{{model.salonPhoneNumber}}" mdbBtn floating="true" class="plus_icon floating-button" size="sm"
+              mdbWavesEffect>
+              <mdb-icon fas icon="phone-alt"></mdb-icon>
+            </a>
+            <a *ngIf="curOp == 'IOS'" (click)="stopPropagation($event); salonNumberModal.show();" href="tel:{{model.salonPhoneNumber}}" mdbBtn floating="true" class="plus_icon floating-button" size="sm"
+            mdbWavesEffect>
+            <mdb-icon fas icon="phone-alt"></mdb-icon>
+          </a>
+
+            <p class="iconLabel">{{ 'MySalon.Phone' | translate }}</p>
+          </li>
+
+          <li class="nav-item" *ngIf="fbLink != '' || isOwner">
+
+            <a (click)="navigateToFB($event)" mdbBtn floating="true"
+              [ngClass]="(fbLink != '') ? 'floating-button':'floating-button-disabled'" class="plus_icon" size="sm"
+              mdbWavesEffect>
+              <mdb-icon fab icon="facebook-f"></mdb-icon>
+            </a>
+            <p class="iconLabel" [ngClass]="(fbLink != '') ? '':'disabled-text'">
+              {{ 'MySalon.Facebook' | translate }}</p>
+          </li>
+          
+
+         <!-- <li class="nav-item" *ngIf="!userIsBlocked && !isExceededMinAppointment">
+            <a mdbBtn floating="true" class="plus_icon appointBtnBg" size="sm" (click)="navigateToReservationApp()"
+              mdbWavesEffect>
+              <mdb-icon far icon="calendar-plus"></mdb-icon>
+            </a>
+            <p class="iconLabel appointBtnColor">{{ 'MySalon.Appointment' | translate }}</p>
+          </li>-->
+
+
+          <li class="nav-item" *ngIf="instaLink != '' || isOwner">
+            <a mdbBtn (click)="navigateToInsta($event)" floating="true"
+              [ngClass]="(instaLink != '') ? 'floating-button':'floating-button-disabled'" class="plus_icon floating-button"
+              size="sm" mdbWavesEffect>
+              <mdb-icon fab icon="instagram"></mdb-icon>
+            </a>
+            <p class="iconLabel" [ngClass]="(instaLink != '') ? '':'disabled-text'">
+              {{ 'MySalon.Instagram' | translate }}</p>
+          </li>
+
+          <li class="nav-item" *ngIf="!isOwner">
+            <a mdbBtn floating="true" (click)="toggleFav($event)" class="plus_icon floating-button" size="sm" mdbWavesEffect>
+              <mdb-icon *ngIf="model.isFavorite" fas icon="star"></mdb-icon>
+              <mdb-icon *ngIf="!model.isFavorite" far icon="star"></mdb-icon>
+            </a>
+            <p class="iconLabel">{{ 'MySalon.Favorite' | translate }}</p>
+          </li>
+
+          <li class="nav-item" *ngIf="isOwner">
+            <a mdbBtn floating="true" class="plus_icon floating-button" size="sm"  (click)="navigateToCalendar($event)"
+              mdbWavesEffect>
+              <mdb-icon far icon="calendar-alt"></mdb-icon>
+            </a>
+            <p class="iconLabel">{{ 'MySalon.Schedule' | translate }}</p>
+          </li>
+
+          <li class="nav-item"  *ngIf="!isOwner && curOp != 'IOS'">
+            <a mdbBtn (click)="sendSms($event)" floating="true" class="plus_icon floating-button" size="sm" mdbWavesEffect>
+              <mdb-icon fas icon="comment-dots"></mdb-icon>
+            </a>
+            <p class="iconLabel">{{ 'MySalon.SMS' | translate }}</p>
+          </li>
+              
+
+
+        </ul>
+      </div>
+
+
+
+    
+
+    </div>
+
+
+  </main>
+  <!--/Main layout-->
+
+
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <mdb-image-modal [modalImages]="images" type="fullscreen"></mdb-image-modal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+ <div class="img_btn_container custom_top"   (click)="navigateToReservationApp()"  >
+  <div class="dynamic-diagonal-split-background"></div>
+  <div   *ngIf="!userIsBlocked && !isExceededMinAppointment"  class="img_text_centered">{{ 'MySalon.Appointment' | translate }}</div>
+</div> 
+
+<div class="img_btn_container custom_top abspos"  [ngClass]="(fixedPos != '') ? 'blockBtn':''"  (click)="navigateToReservationApp()"   >
+  <div  *ngIf="fixedPos && !userIsBlocked && !isExceededMinAppointment"  class="dynamic-diagonal-split-background"></div>
+  <div  *ngIf="fixedPos && !userIsBlocked && !isExceededMinAppointment"   class="img_text_centered">{{ 'MySalon.Appointment' | translate }}</div>
+</div> 
+  <div class="h-100 bottom-section salonPanel">
+
+    <mdb-card *ngIf="imagesPath && !userIsBlocked" class=" mb-3">
+      <mdb-card-body class="lighten-3">
+
+
+        
+        <mdb-image-modal  #modalImages  [modalImages]="images" type="fullscreen" class="m-0 p-0 w-100 fullscreen"></mdb-image-modal>
+
+        <mdb-carousel #carouselRef      [isControls]="false" class="carousel slide carousel-fade" [animation]="'fade'">
+          <mdb-carousel-item *ngFor="let path of imagesPath; let i = index;">
+            <div (click)="triggerModalImageClick(i)" class="view w-100">
+              <img class="d-block w-100"
+                src="{{this.host + path.imagePath}}" alt="{{path.title}}">
+              <div class="mask waves-light" mdbWavesEffect></div>
+            </div>
+          </mdb-carousel-item>
+        </mdb-carousel> 
+
+
+        
+
+        
+
+        <!-- Grid row -->
+        <div class="ltr" #chatSection>
+          <mdb-accordion   *ngIf="commentsIsVisible" >
+            <mdb-accordion-item   #SBItemComponent >
+              <mdb-accordion-item-head class="black-according">
+                {{model.comments.length}}
+                <i class="far fa-comment-alt blackColor"></i>
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+
+
+
+                
+
+
+                <!-- Grid column -->
+                <div  class="px-0">
+                  <div class="white  px-3 pt-3 ">
+
+                    <div  *ngIf="commmentIsLoading">
+                      <mdb-spinner class="centered"></mdb-spinner>
+                    </div>
+
+                    <ul   #commentEl [scrollTop]="scrolltop" class="list-unstyled friend-list commentBox">
+                      <li class="d-flex justify-content-between comments__container" *ngFor="let com of model.comments">
+
+
+
+
+                        
+               
+                  <div class="comment"  >
+                      <div class="img__left" (click)="previewCommentImages(host + com.profileimg,com.username,com.phoneNumber); commentImgModal.show();">
+                          <img src="{{this.host + (com.profileimg100x100.length > 4 ? com.profileimg100x100 : com.profileimg40x40) }}"  alt="">
+                      </div>
+                      
+                      <div class="lead__text">
+                          <div class="top_details">
+                            <!--<div class="row">
+                              <div class="col-3">
+                                <div class="name">{{com.username}}</div>
+                              </div>
+                              <div class="col-7">
+                                <div class="text">{{com.comment}}</div>
+                              </div>
+                              <div class="col-2">
+                                <div class="removeComment">
+                                  <mdb-icon *ngIf="isOwner" fas icon="times"  style="color:red;" (click)="showRemoveCommentModal(com._id)"></mdb-icon>
+                                </div>
+                              </div>
+                            </div>-->
+                              <div class="name">{{com.username}}</div>
+                              <div class="text">{{com.comment}}</div>
+                              <div class="removeComment">
+                                <mdb-icon *ngIf="isOwner" class="rcomment" fas icon="times" (click)="showRemoveCommentModal(com._id)"></mdb-icon>
+                              </div>
+                              
+                          </div>
+                          <div class="date__time">
+                              <div class="time">15:58</div>
+                              <div class="date_text">{{getDateFromDateTime(com.commentTime)}}</div>
+                          </div>
+
+                      </div>
+
+
+                  </div>
+
+                </li>
+                </ul>
+                <ul class="pl-0">
+                  <li class="white">
+                  <div class="add__comment">
+                    <div class="admin__img">
+                        <img src="{{this.commentImg100x100Path}}" alt="">
+                    </div>
+                    <div class="add__text w-100">
+            
+                            <div class="input-icons">
+  
+                                       <i class="fas fa-paper-plane dynamic-c6"  (click)="addComment(commentText.value)"></i>
+                                       <input class="input-field" name="commentText" #commentText 
+                                              type="text" [(ngModel)]="txtBox"
+                                              placeholder="{{'MySalon.typeYourMessageHere' | translate}}">
+                            </div>
+                    </div>
+                  </div>
+                </li>
+                </ul>
+              </div>
+
+            </div>
+         
+                        <!--
+                        <a (click)="previewCommentImages(host + com.profileimg); commentImgModal.show();">
+                  
+                          <img src="{{this.host +  com.profileimg40x40}}" alt="avatar"
+                            class="avatar rounded-circle d-flex align-self-center mb-3 mr-2 z-depth-1">
+                            
+                          </a>
+                          <div class="text-small chatContent" style="width:10rem;">
+                            <strong>{{com.username}}</strong>
+                            <p class="last-message text-muted">{{com.comment}}</p>
+                          </div>
+                          <div class="chat-footer">
+                            <p class="text-smaller text-muted text-center mb-0 mt-3 ml-2">{{com.commentTime}}</p>
+                          </div>
+
+                          <mdb-icon *ngIf="isOwner" fas icon="times"  style="color:red;" (click)="showRemoveCommentModal(com._id)"></mdb-icon>
+                     
+                      </li>
+                    </ul>
+                    <ul class="list-unstyled friend-list textAreaBox">
+                      <li class="white">
+                        <div class="form-group basic-textarea row">
+                          <div class="col-10">
+
+
+                              <input class="Rectangle-2468 form-control pl-2 my-0" type="text"/>
+                          </div>
+                          <div class="col-2 p-0">
+                            <a mdbBtn floating="true" (click)="addComment(commentText.value)" class="blue-bg" size="sm">
+                              <mdb-icon far icon="paper-plane"></mdb-icon>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+                <!-- Grid column -->
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+          </mdb-accordion>
+        </div>
+        <!-- Grid row -->
+
+      </mdb-card-body>
+    </mdb-card>
+
+
+
+    <mdb-card class="card-image mb-3 mt-3" *ngIf="isOwner">
+      <mdb-card-body class="lighten-3">
+
+        <div class="text-center" style="padding-top:10px;">
+          <ul class="nav justify-content-center ltr">
+            <li>
+              <p class="blackColor">{{ 'MySalon.stateOfRatingRightNow' | translate }}</p>
+            </li>
+
+
+          </ul>
+
+          <div class="row">
+            <div class="col-sm-12  mb-4">
+              <circle-progress [percent]="percent" [radius]="70" [outerStrokeWidth]="8" [innerStrokeWidth]="4"
+                [outerStrokeColor]="outerStrokeColor" [innerStrokeColor]="innerStrokeColor" [animation]="true"
+                [animationDuration]="300" [showSubtitle]="false" [showUnits]="false" [showTitle]="false">
+              </circle-progress>
+              <div *ngIf="model.finalrating" id="progress">
+                <p class="m-0">{{ 'MySalon.Voters' | translate }}: {{model.finalrating.voters}}</p>
+                <p *ngIf="model.finalrating.score > 0">{{ 'MySalon.Score' | translate }}: {{model.finalrating.score}}/5
+                </p>
+                <p *ngIf="model.finalrating.score == 0">{{ 'MySalon.Score' | translate }}: -</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </mdb-card-body>
+    </mdb-card>
+
+
+    <mdb-card class="card-image mb-3 mt-3">
+      <mdb-card-body class="lighten-3">
+
+        <!--Grid column-->
+        <div class="text-center" style="padding-top:10px;">
+          <ul class="nav justify-content-center ltr">
+            <li>
+              <p class="blackColor">{{ 'MySalon.businessHours' | translate }}</p>
+            </li>
+
+
+          </ul>
+        </div>
+        <div class="workTimeTable" *ngIf="model.employees">
+
+
+        
+        <div *ngFor="let items1 of openhours; let i = index;">
+          <div class="row">
+            <div class="col-6 font-weight-bold pr-4 updateSalonDays">
+              {{items1.day_display}}
+             </div>
+             <div class="col-5 font-weight-bold pl-4 openhours" [ngClass]="{'dynamic-c3': (items1.isDayOff == true)}">
+              {{items1.hours}}
+             </div>
+            </div>
+        </div>
+  
+        </div>
+
+      </mdb-card-body>
+    </mdb-card>
+
+
+
+
+
+
+    <mdb-card class="card-image mb-3">
+      <mdb-card-body class="lighten-3">
+        <div class="text-center">
+          <ul class="nav justify-content-center ltr">
+            <li>
+              <p class="blackColor">{{ 'MySalon.Service' | translate }}</p>
+            </li>
+          </ul>
+        </div>
+
+
+
+         <!----> <mdb-tabset [buttonClass]="'classic-tabs empTabs'" [ngClass]="{'employeeNameTab': employeesTabs.length == 1}" [contentClass]="'card'" class=" classic-tabs serveciesTabs">
+
+            <!--Panel 1-->
+            <mdb-tab *ngFor="let tabs of employeesTabs" class="pt-2" heading="<img src='{{tabs.profile}}' class='emp_prof'/> <br/> {{ tabs.name }} </mdb-tab>">
+            
+        <mdb-tabset [buttonClass]="'classic-tabs dynamic-bg-c6'" [contentClass]="'card'" class="classic-tabs serveciesTabs">
+
+          <!--Panel 1-->
+          <mdb-tab *ngFor="let tab of tabs.tabs" heading="{{ tab.title }}    <img src='{{ tab.path }}' width='30' class='img-fluid rounded'></mdb-tab>">
+            <div mdbTable *ngIf="model.employees" class="text-center header_services">
+              <div class="services_sec"> 
+              <div class="container_sevices"> 
+              <div class="search__icon__area">
+                <div class="search">
+                        <div class="input-icons">
+                           
+                            <i class="fas fa-search"></i>
+                            <input class="_input-field" 
+                                   type="text"  [(ngModel)]="searchText" 
+                                   placeholder="">
+                                   
+                        </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+              <div *ngFor="let item of tab.content | filter:searchText; let i = index; ">
+
+                <div class="services_sec">
+                          <div>
+                            <div class="center__box">
+                                <div class="shadow__box">
+                                  <div class="align_group">
+                                    <div class="text_group text-left-right2">
+                                    <div class="testc"><p class="mb-custom blackColor pr-2 subServicDP" [ngClass]="{'max-width-none': !item.additionalInfo}">{{item.subServicesDp}}</p></div>
+                                      <p class="whiteblackColor pr-2">{{item.subServiceTime}} {{ 'Common.minutes' | translate }}</p>
+                                  </div>
+                                      <div class="btn_text">
+                                        
+                                         <!-- <div class="img_btn_container">
+                                            <img src="assets/images/mainicons/a_button.png" alt="Snow" class="btnAppointment" >
+                                            <div [routerLink]="['/reservationApp', { id: model.userId}]"  class="img_text_centered">{{ 'MySalon.Appointment' | translate }}</div>
+                                          </div>     -->     
+                                            
+                                          <p *ngIf="item.subServicePrice" class="whiteblackColor pl-2  mb-custom text-left">{{item.subServicePrice}} {{ 'Common.currencyA' | translate }}</p>
+                                          <p *ngIf="item.additionalInfo" class="dynamic-c2  service-info text-center w-100 pl-2" (click)="additionalInfoUpdate(item.additionalInfo); additionalInfoModal.show();">{{ item.additionalInfo}}</p>     
+                                      </div>
+
+                                  </div>
+                                </div>   
+                            </div> 
+                            <br>
+                            <br>
+                          </div>
+                      </div>
+
+    </div>
+  </div>
+</mdb-tab>
+</mdb-tabset>
+</mdb-tab>
+</mdb-tabset>
+
+
+
+      </mdb-card-body>
+    </mdb-card>
+
+
+
+
+
+
+
+    <mdb-card class="card-image mt-3 mb-3" *ngIf="!isOwner && !userIsBlocked">
+      <mdb-card-body class="lighten-3">
+
+        <div class="col-12 text-center mt-4 mx-auto">
+          <ul class="nav justify-content-center ltr">
+            <li>
+              <a mdbBtn floating="true" class="dynamic-bg-c6">
+                <mdb-icon fab icon="gratipay"></mdb-icon>
+              </a>
+              <p class="pt-4" *ngIf="model.rating == 0" >{{ 'MySalon.WhatDoYouThinkOfThisSalon' | translate }}</p>
+            </li>
+          </ul>
+
+          <div class="row">
+            <div class="col-12">
+              <ul class="list-inline rating-list iconRate" *ngFor="let star of stars" style="display: inline-block">
+                <li (click)="countStar(star)" [ngClass]="{'selected': (star <= model.rating)}">
+                  <i *ngIf="star==1" class="far fa-angry "></i>
+                  <i *ngIf="star==2" class="far fa-frown-open "></i>
+                  <i *ngIf="star==3" class="far fa-meh"></i>
+                  <i *ngIf="star==4" class="far fa-smile"></i>
+                  <i *ngIf="star==5" class="far fa-laugh-beam"></i>
+
+                </li>
+              </ul>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </mdb-card-body>
+    </mdb-card>
+
+
+
+
+
+  </div>
+
+
+
+<mdb-side-nav #sidenav  class="fixed side-nav-light left-navbar-side" [fixed]="true"><app-navbar  (displayVisibilityModal)="displayVisibilityModal($event)" isSalonVisible="{{this.isVisible}}" currentPage="salon-panel" isSalonView="true"  isSalonOwner="{{isOwner}}" ></app-navbar></mdb-side-nav>
+<app-bottom-nav-bar  [smallProfileImg] = "smallprofImg" (showNavbar)="sidenav.show()"></app-bottom-nav-bar>
+  
+</div>
+
+
+
+
+
+<div mdbModal #commentImgModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="commentImgModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="row justify-content-center">
+          <mdb-image-modal [modalImages]="commentImages" type="margin"></mdb-image-modal>
+        </div>
+          <div class="salonpage-profile" *ngIf="isOwner">
+            <div class="row"  >
+              <div class="col-1">
+                <i class="fas fa-user prefix "></i>
+              </div>
+              <div class="col-9">
+                <label for="form3" class="active"> {{unComment}}</label>
+              </div>
+            </div>
+            <div class="row"  >
+            <div class="col-1">
+              <i class="fas fa-phone prefix"></i>
+            </div>
+            <div class="col-9">
+              <a href="tel:{{phoneComment}}">
+                {{phoneComment}}
+              </a>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div mdbModal #profileModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="profileModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="row justify-content-center">
+          <mdb-image-modal [modalImages]="profileImage" type="margin"></mdb-image-modal>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #salonNumberModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">{{ 'MySalon.Phone' | translate }}</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <a href="tel:{{model.salonPhoneNumber}}">
+          <i class="fas fa-phone"> </i>
+          {{ model.salonPhoneNumber}}
+        </a>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+
+
+
+<div mdbModal #exceededAppoitnemt="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <p class="font-weight-bold">{{ 'MySalon.reachedTheMaximimumAppointment' | translate }}</p>
+      </div>
+
+       <!--Footer-->
+      <div class="modal-footer justify-content-center">
+          <a type="button" mdbBtn color="info"  class="waves-effect" mdbWavesEffect
+           (click)="exceededAppoitnemt.hide()">{{ 'Common.Ok' | translate }}
+         </a>
+     </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+<div mdbModal #additionalInfoModal="mdbModal" class="modal fade top" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-top" aria-label="Close" (click)="additionalInfoModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-center" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body text-center">
+        <p class="font-weight-bold">{{aInfo}}</p>
+
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="additionalInfoModal.hide()" mdbWavesEffect>{{'Common.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #removeCommentModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <button type="button" class="close white-text pull-right" aria-label="Close" (click)="removeCommentModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <p class="heading">{{ 'MySalon.comments.removeCommentTitle' | translate }}</p>
+      </div>
+
+
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ 'MySalon.comments.removeComment' | translate }} </p> 
+          </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect
+          (click)="removeComment(); removeCommentModal.hide();">{{ 'Common.Yes' | translate }}
+        </a>
+
+        <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="removeCommentModal.hide()">{{ 'Common.No' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<div mdbModal #invisibleModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body font-weight-bold">
+      {{this.visibilityBody}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" mdbBtn color="info" class="waves-light" (click)="changeVisiblity(); invisibleModal.hide();" aria-label="Close"
+        mdbWavesEffect>{{'Common.Yes' | translate}}</button>
+      <button type="button" mdbBtn color="info" outline="true" class="relative waves-light" (click)="invisibleModal.hide()"
+        mdbWavesEffect>{{'Common.No' | translate}}</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<!--<app-header-nav (shareFunc)="shareWith()"  #appDashboard navLink="/home" customClass="salonBar fixed-top"   isOwner="{{isOwner}}" isHasList="false"
+headerName="{{navbarLabel}}" isHavingStore="{{isHaveStore}}" isVisible="{{isVisible }}"></app-header-nav>-->

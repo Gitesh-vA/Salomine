@@ -1,0 +1,26 @@
+@import './mixins';
+
+$main-bg-color:linear-gradient(155deg, #ffffff, #ffffff);// linear-gradient(155deg, #298ac7, #eb87ad);
+$light-bg-color: #eff3f5;
+$dark-color: #aaa;
+$light-color: #fff;
+
+$c11:#A2A2A1;
+
+
+$dynamic-c1: var(--dynamic-c1);
+$dynamic-c2: var(--dynamic-c2);
+$dynamic-c3: var(--dynamic-c3);
+$dynamic-c4: var(--dynamic-c4);
+$dynamic-c5: var(--dynamic-c5);
+$dynamic-c6: var(--dynamic-c6);
+$dynamic-c7: var(--dynamic-c7);
+$dynamic-c8: var(--dynamic-c8);
+
+$dynamic-private-c1:var(--dynamic-private-c1);
+$dynamic-private-c2:var(--dynamic-private-c2);
+$dynamic-private-c3:var(--dynamic-private-c3);
+$dynamic-private-c4:var(--dynamic-private-c4);
+$dynamic-private-c5:var(--dynamic-private-c5);
+$dynamic-private-c6:var(--dynamic-private-c6);
+$dynamic-private-c7:var(--dynamic-private-c7);

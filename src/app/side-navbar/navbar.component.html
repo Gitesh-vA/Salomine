@@ -1,0 +1,92 @@
+<div *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<div >
+
+
+
+    <!--<app-languages locatedIn="home"></app-languages>-->
+    <mdb-navbar-brand>
+      <!-- Logo -->
+      <li class="sideBarHead dynamic-private-bg-c6">
+        <div class="logo-wrapper">
+          <div *ngIf="!this.isAdmin"  routerLink="/profile" [queryParams]="{ from: 'home'}" class="col-12">
+            <div class="bg-profile2" [ngStyle]="{'background-image': getProfleUrl() }"
+              style=" justify-content: center;">
+            </div>
+            <div class="text-center"><h5 class="profileNav">{{ 'Home.sideBar.Profile' | translate }} </h5></div>
+          </div>
+          <div *ngIf="this.isAdmin" (click)="navigateToSalon()"   class="col-12">
+            <div class="bg-profile2" [ngStyle]="{'background-image': getProfleUrl() }"
+              style=" justify-content: center;">
+            </div>
+            <div class="text-center"> <h5 class="profileNav">{{salonName}}</h5> </div>
+          </div>
+          <div class="col-12"></div>
+        </div>
+      </li>
+      <!--/. Logo -->
+    </mdb-navbar-brand>
+
+    <links>
+      <!-- Side navigation links -->
+      <li>
+        <ul class="collapsible collapsible-accordion menuList">
+          <mdb-accordion [multiple]="false" aria-multiselectable="false">
+
+
+            <mdb-accordion-item class="no-collase"> 
+              <mdb-accordion-item-head mdbWavesEffect routerLink="/home"  >
+                <mdb-icon fas icon="home"></mdb-icon> {{ 'HeaderNav.Home' | translate }}
+              </mdb-accordion-item-head>
+              <!-- <mdb-accordion-item-body></mdb-accordion-item-body> -->
+            </mdb-accordion-item>
+
+
+   
+
+
+            <!-- Simple link -->
+            <mdb-accordion-item class="no-collase" *ngIf="!isAdmin">
+              <mdb-accordion-item-head mdbWavesEffect routerLink="/open-salon" [queryParams]="{ from: 'home'}">
+                <img class="optsrc" width="20"  src="assets/images/Opensalon.svg" alt="account">{{ 'Home.sideBar.OpenSalon' | translate }}
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+
+            <!-- Simple link -->
+            <mdb-accordion-item class="no-collase" *ngIf="isAdmin">
+              <mdb-accordion-item-head mdbWavesEffect routerLink="/update-salon" [queryParams]="{ from: 'home'}">
+                <img class="optsrc" width="20" src="assets/images/Updatesalon.svg" alt="account">{{ 'Home.sideBar.updateSalon' | translate }}
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item class="no-collase" >
+              <mdb-accordion-item-head mdbWavesEffect class="relative waves-light" (click)="Settings()" >
+                <mdb-icon fas icon="cog"></mdb-icon>{{ 'settings.Settings' | translate }}
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+
+          </mdb-accordion>
+
+
+
+        </ul>
+      </li>
+      
+      <!--/. Side navigation links -->
+    </links>
+    <div class="sidenav-bg mask-strong"></div>
+
+    <p *ngIf="this.curVer" class="versionLbl">{{this.curVer}}</p>
+
+  <!--/. Sidebar navigation --> 
+
+
+  
+</div>

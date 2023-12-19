@@ -1,0 +1,343 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+<!--Grid row-->
+<div >
+
+
+  <!--Grid column-->
+  <div *ngIf="!isLoading">
+
+    <!--Card-->
+    <mdb-card class="testimonial-card shadownone" [ngStyle]="{'height': [screenHeight]}" >
+      <!--Bacground color-->
+      <div class="card-up">
+      </div>
+
+       <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal();">
+          <span aria-hidden="true">×</span>
+        </button>
+      <!--Avatar-->
+      <div class="avatar mx-auto">
+        <img [src]="content.isByOwner ? 'assets/images/defaultProfilePic.png' : this.host + content.profileimg100x100"
+          class="rounded-circle img_profile">
+      </div>
+
+      <mdb-card-body  style="box-shadow: none;">
+        <!--Name-->
+        <mdb-card-title>
+          <h4 style="color:black">{{ content.Name }}</h4>
+          <a *ngIf="!content.isByOwner" style="font-size: 21px; color:rgba(0, 0, 0, 0.5);" href="tel:{{content.phoneNum}}">
+            {{ content.phoneNum }}
+          </a>
+          <p>{{ content.title }}</p>
+        </mdb-card-title>
+       
+
+        <div class="row">
+
+          <div *ngIf="!content.isByOwner && content.status == 'pending' " class="mt-3 col-6 rec">
+            <div class="z-depth-1" (click)="acceptAppointment()">
+              <div>
+            <img   src="assets/images/Accept.png"  class="icons"  alt=""> 
+            <a   href="JavaScript:void(0);">
+            <div class="d-flex w-100 justify-content-center">
+              <p class="mb-1 font-weight-bold font">{{'Notification.Accept' | translate }}</p>
+              <small></small>
+            </div>
+          </a>
+        </div>
+        </div>
+          </div>
+
+          <div *ngIf="!content.isByOwner  && content.status == 'pending'" class="mt-3 col-6 rec">
+            <div class="z-depth-1" (click)="autoAcceptAppointment()">
+               <div>
+            <img  src="assets/images/AutoAccept.png"  class="icons"  alt=""> 
+            <img class="modal-infoBtn" (click)="displayInfo()"  alt="info" src="assets/images/info.png" />
+            <a  href="JavaScript:void(0);">
+              <div class="d-flex w-100 justify-content-center">
+                <p class="mb-1 font-weight-bold font">{{'Notification.autoAccept' | translate}}</p>
+                <small class="text-muted"></small>
+              </div>
+            </a>
+          </div>
+          </div>
+          </div>
+
+          <div *ngIf="!content.isByOwner && curOp != 'IOS' "  class="mt-3 col-6 rec">
+            <div class="z-depth-1" (click)="sendSMS()" >
+              <div>
+            <img   src="assets/images/SMS.png" class="icons"  alt=""> 
+            <a href="JavaScript:void(0);">
+            <div class="d-flex w-100 justify-content-center">
+              <p class="mb-1 font-weight-bold font">{{ 'MySchedule.sendSMS' | translate }}</p>
+              <small></small>
+            </div>
+          </a>
+        </div>
+        </div>
+          </div>
+
+          <div class="col-6 mt-3 rec"  *ngIf="!content.isOldAppointment" >
+                <div class="z-depth-1" (click)="CancelAppointmentModal.show()">
+                  <div>
+                <img   src="assets/images/notification/Cancel.svg"  class="icons"   alt=""> 
+
+                <a href="JavaScript:void(0);">
+                <div class="d-flex w-100 justify-content-center">
+                  <p class="mb-1 font-weight-bold font"  *ngIf="content.Type != 2" > {{ 'MySchedule.cancelAppointment' | translate }}</p>
+                  <p class="mb-1 font-weight-bold font"  *ngIf="content.Type == 2" > {{ 'BreakTime.breakTimeCancel' | translate }}</p>
+                  <small></small>
+                </div>
+              </a>
+            </div>
+            </div>
+          </div>
+          <div   class="col-6 mt-3 rec" *ngIf="content.isOldAppointment" >
+            <div class="z-depth-1"   (click)="removeAppointmentModal.show()">
+              <div>
+            <img   src="assets/images/notification/Cancel.svg"  class="icons"   alt=""> 
+            <a  href="JavaScript:void(0);" >
+            <div class="d-flex w-100 justify-content-center">
+              <p class="mb-1 font-weight-bold font">{{ 'MySchedule.removeAppointment' | translate }}</p>
+              <small></small>
+            </div>
+          </a>
+        </div>
+        </div>
+          </div>
+
+
+
+          <div *ngIf="!content.isByOwner" class="mt-3 col-6 rec">
+            <div class="z-depth-1"  >
+              <div>
+                <a href="https://wa.me/972{{content.phoneNum}}">
+            <img   src="assets/images/Whatsapp.png" class="icons"  alt=""> 
+            </a>
+            <a href="https://wa.me/972{{content.phoneNum}}">
+            <div class="d-flex w-100 justify-content-center">
+              <p class="mb-1 font-weight-bold font">{{ 'MySchedule.sendWhatsApp'  | translate }}</p>
+              <small></small>
+            </div>
+          </a>
+        </div>
+        </div>
+          </div>
+
+
+
+
+          <div *ngIf="!content.isByOwner"  class="col-6 mt-3 rec"  >
+            <div class="z-depth-1" (click)="showblockModal()">
+               <div>
+            <img   src="assets/images/Block.png"  class="icons" alt=""> 
+            <a   href="JavaScript:void(0);">
+              <div class="d-flex w-100 justify-content-center">
+                <p class="mb-1 font-weight-bold font">{{blockedStatus}}</p>
+                <small class="text-muted"></small>
+              </div>
+            </a>
+          </div>
+          </div>
+          </div>
+
+
+        </div>
+
+
+
+
+      </mdb-card-body>
+    </mdb-card>
+    <!--/.Card-->
+
+  </div>
+  <!--Grid column-->
+
+</div>
+<!--Grid row-->
+
+
+
+
+<div mdbModal #sendMsgModal="mdbModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">New message to </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="md-form">
+            <textarea type="text" style="width:100%;" id="message-text" class="md-textarea"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" (click)="sendMsgModal.hide()"
+          mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="CancelAppointmentModal.show()"
+          mdbWavesEffect>Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #CancelAppointmentModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p *ngIf="content.Type == 2" class="heading">{{ 'BreakTime.modalTitle' | translate }}</p>
+        <p *ngIf="content.Type != 2" class="heading">{{ 'MySchedule.cancelAppointment' | translate }}</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+        <p  *ngIf="content.Type != 2">{{ 'MySchedule.areYouSureWantToCancelAnAppointment' | translate }}</p>
+        <p  *ngIf="content.Type == 2">{{ 'BreakTime.areYouSureWantToCancelAnAppointment' | translate }}</p>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a (click)="cancelAppointment(); CancelAppointmentModal.hide();" mdbBtn color="info" outline="true"
+          class="waves-effect" mdbWavesEffect>{{ 'Common.Yes' | translate }}</a>
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect data-dismiss="modal"
+          (click)="CancelAppointmentModal.hide()">{{ 'Common.No' | translate }}</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+<div mdbModal #removeAppointmentModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">{{ 'MySchedule.removeAppointment' | translate }}</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+        <p>{{ 'MySchedule.areYouSureWantToRemoveAnAppointment' | translate }}</p>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a (click)="removeAppointment(); removeAppointmentModal.hide();" mdbBtn color="info" outline="true"
+          class="waves-effect" mdbWavesEffect>{{ 'Common.Yes' | translate }}</a>
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect data-dismiss="modal"
+          (click)="removeAppointmentModal.hide()">{{ 'Common.No' | translate }}</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+
+<div mdbModal #unblockUserModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <button type="button" class="close white-text pull-right" aria-label="Close" (click)="unblockUserModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <p class="heading">{{ 'BlockUser.unblockUser' | translate }}</p>
+      </div>
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ 'BlockUser.unblockModal' | translate }} </p> 
+          </div>
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect
+          (click)="unblockUser(); unblockUserModal.hide();">{{ 'Common.Yes' | translate }}
+        </a>
+
+        <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="unblockUserModal.hide()">{{ 'Common.No' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+<div mdbModal #blockUserModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <button type="button" class="close white-text pull-right" aria-label="Close" (click)="blockUserModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <p class="heading">{{ 'BlockUser.blockUser' | translate }}</p>
+      </div>
+
+
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ 'BlockUser.blockModal' | translate }} </p> 
+          </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect
+          (click)="blockUser(); blockUserModal.hide();">{{ 'Common.Yes' | translate }}
+        </a>
+
+        <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="blockUserModal.hide();">{{ 'Common.No' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+<div mdbModal #autoAcceptInfoModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Body-->
+      <div class="modal-body">
+        <p>   {{ 'Notification.autoAcceptInfo' | translate }} </p>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a (click)="autoAcceptInfoModal.hide();" mdbBtn color="info" outline="true" class="waves-effect"
+          mdbWavesEffect>{{ 'Common.Ok' | translate }}</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+

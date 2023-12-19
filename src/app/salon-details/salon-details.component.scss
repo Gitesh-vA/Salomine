@@ -1,0 +1,592 @@
+@import "../../scss/variables";
+
+.image-preview {
+    height: 5rem;
+    margin: 1rem 0;
+  }
+  
+  .col-custom
+  {
+    max-width: 0.1% !important;
+  }
+
+  .col-8-1{
+    flex: 0 0 69%;
+    max-width: 71%;
+  }
+
+  .col-3-1{
+    flex: 0 0 31%;
+    max-width: 35%;
+  }
+  
+  .info
+  {
+    vertical-align: bottom;
+    font-size: small;
+  }
+  
+  .wt_opt
+  {
+    font-size:smaller;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .filled ::ng-deep svg path {
+    fill: white;
+  }
+
+  .whatsappSVG ::ng-deep  svg path {
+  
+    opacity: 0.5;
+    fill:$dynamic-private-c6 !important; 
+  }
+
+
+  .filled ::ng-deep svg .dynamic_fill_color {
+    fill: $dynamic-private-c6; 
+  }
+
+  .filled ::ng-deep .dynamic_stroke_color  {
+    stroke: $dynamic-private-c6; 
+  }
+
+  .blank ::ng-deep .dynamic_stroke_color  {
+    stroke: $dynamic-private-c6;
+  }
+
+  
+  .blank ::ng-deep svg path {
+    fill: white;
+    stroke: $dynamic-private-c6;
+  }
+
+
+  .editBtnIcon
+  {
+    fill: $dynamic-private-c6 !important;
+  }
+  
+  .questionicon
+  {
+    color: $dynamic-private-c6;
+    font-size: large;
+  }
+
+
+  .timeInMinLabel
+  {
+    font-size: 0.55rem !important;
+  }
+  
+  .txt-alignment
+  {
+    text-align: right;
+  }
+  
+  .image-preview img {
+    height: 100%;
+  }
+  
+  ul.stepper.horizontal .step .step-title::before {
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+  }
+  
+  ul.stepper.horizontal .step:nth-of-type(1) .step-title {
+    &:before {
+      content: "\f007";
+    }
+  }
+  
+  ul.stepper.horizontal .step:nth-of-type(2) .step-title {
+    &:before {
+      content: "\f004";
+    }
+  }
+  
+  ul.stepper.horizontal .step:nth-of-type(3) .step-title {
+    &:before {
+      content: "\f005";
+    }
+  }
+  
+  .nextBtn {
+    position: absolute;
+    top: 490px;
+    right: 230px;
+  }
+  .customPadding {
+    padding-top: 10px;
+  }
+  
+  
+  .category {
+    padding-top: 30px;
+  }
+  
+  .btn-primary {
+    background-color: $dynamic-private-c6 !important;
+  }
+  
+  .tabs-primary {
+    background-color: $dynamic-private-c6 !important;
+  }
+  
+  .btn-primary:hover {
+    background-color: $dynamic-private-c6 !important;
+    border-color: $dynamic-private-c6 !important;
+  }
+  
+  .btn-primary:not([disabled]):not(.disabled).active,
+  .btn-primary:not([disabled]):not(.disabled):active,
+  .show > .btn-primary.dropdown-toggle {
+    background-color: $dynamic-private-c6 !important;
+    box-shadow: none !important;
+  }
+  
+  .btn-blue {
+    background-color: #10b4fa !important;
+    color: #fff;
+  }
+  
+  .bottomBorder {
+    border-bottom: 1px solid #ced4da !important;
+  }
+  
+  .step-title {
+    font-size: x-smal !important;
+  }
+  
+  mdb-step {
+    font-size: x-smal !important;
+  }
+  
+  .step3 {
+    font-size: x-smal !important;
+  }
+  
+  .step2 {
+    padding: 0px !important;
+  }
+  
+  .step-new-content {
+    padding: 0px !important;
+  }
+  
+  .serverciesTable td,
+  .serverciesTable th {
+    vertical-align: initial;
+  }
+  
+  .table.table td,
+  table.table th {
+    vertical-align: initial;
+    max-width: 60px;
+    text-align: center;
+  }
+  table.table th {
+    vertical-align: middle !important;
+  }
+  
+  .col1 {
+    width: 5%;
+  }
+  
+  .col2 {
+    width: 35%;
+    height:44px;
+  }
+  
+  .col3 {
+    width: 10%;
+  }
+  
+  .col4 {
+    width: 20%;
+  }
+  
+  .col5 {
+    width: 30%;
+  }
+  
+  tbody {
+    vertical-align: top !important;
+  }
+  
+  .table.table td {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 1px;
+  }
+  
+  .fa-plus-circle {
+    color: green;
+  }
+  
+  .fa-minus-circle {
+    color: red;
+  }
+  
+  .md-form .form-control.is-valid,
+  .md-form .form-control.is-invalid {
+    background-position: center left !important;
+  }
+  
+  .md-form {
+    margin-bottom: 0px !important;
+  }
+  
+  .serviceBox {
+    border: 3px solid #b7b7b77d;
+  }
+  
+  .dDDcss {
+    max-width: 87px;
+  }
+  
+  .dDDcss *{
+    font-size: 30px;
+  }
+  #pictures {
+    width: 100%;
+  }
+  
+
+  .modal .modal-checkbox-label{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .modal .modal-checkbox-label .modal-checkbox-label-text{
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+  }
+
+  .modal .modal-checkbox-label .modal-checkbox-input{
+    width: 80px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .modal .modal-done-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .checkbox-wrapper-33 {
+    --s-xsmall: 0.625em;
+    --s-small: 1.2em;
+    --border-width: 1px;
+    --c-primary: #12b4fd;
+    --c-primary-20-percent-opacity: rgb(95 17 232 / 20%);
+    --c-primary-10-percent-opacity: rgb(95 17 232 / 10%);
+    --t-base: 0.4s;
+    --t-fast: 0.2s;
+    --e-in: ease-in;
+    --e-out: cubic-bezier(.11,.29,.18,.98);
+  }
+
+  
+
+  .checkbox-wrapper-33 > span {
+    min-width: 80px;
+    text-align: left;
+  }
+
+  .checkbox-wrapper-33 > span.modal-checkbox-label-text {
+    min-width: 180px;
+    text-align: center;
+  }
+
+
+  .checkbox-wrapper-33 .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .checkbox-wrapper-33 .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .checkbox-wrapper-33  .checkbox {
+    display: inline-block;
+  }
+
+  .checkbox-wrapper-33 .checkbox + .checkbox {
+    margin-top: var(--s-small);
+  }
+  .checkbox-wrapper-33 .checkbox__symbol {
+    display: inline-block;
+    display: flex;
+    margin-right: calc(var(--s-small) * 0.7);
+    border: var(--border-width) solid var(--c-primary);
+    position: relative;
+    border-radius: 0.1em;
+    width: 1.5em;
+    height: 1.5em;
+    transition: box-shadow var(--t-base) var(--e-out), background-color var(--t-base);
+    box-shadow: 0 0 0 0 var(--c-primary-10-percent-opacity);
+  }
+  .checkbox-wrapper-33 .checkbox__symbol:after {
+    content: "";
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    width: 0.25em;
+    height: 0.25em;
+    background-color: var(--c-primary-20-percent-opacity);
+    opacity: 0;
+    border-radius: 3em;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+  }
+  .checkbox-wrapper-33 .checkbox .icon-checkbox {
+    width: 1em;
+    height: 1em;
+    margin: auto;
+    fill: none;
+    stroke-width: 3;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    color: var(--c-primary);
+    display: inline-block;
+  }
+  .checkbox-wrapper-33 .checkbox .icon-checkbox path {
+    transition: stroke-dashoffset var(--t-fast) var(--e-in);
+    stroke-dasharray: 30px, 31px;
+    stroke-dashoffset: 31px;
+  }
+  .checkbox-wrapper-33 .checkbox__textwrapper {
+    margin: 0;
+  }
+  .checkbox-wrapper-33 .checkbox__trigger:checked + .checkbox__symbol:after {
+    -webkit-animation: ripple-33 1.5s var(--e-out);
+            animation: ripple-33 1.5s var(--e-out);
+  }
+  .checkbox-wrapper-33 .checkbox__trigger:checked + .checkbox__symbol .icon-checkbox path {
+    transition: stroke-dashoffset var(--t-base) var(--e-out);
+    stroke-dashoffset: 0px;
+  }
+  .checkbox-wrapper-33 .checkbox__trigger:focus + .checkbox__symbol {
+    box-shadow: 0 0 0 0.25em var(--c-primary-20-percent-opacity);
+  }
+
+  .modal .modal-done-button .done-custom{
+    border-radius: 20px;
+    padding: 7px 40px;
+    margin: 0 0 20px;
+  }
+
+  .modal .modal-custom-content{
+    border-radius: 18px;
+  }
+  
+.modal input[type="checkbox"] {
+  opacity: 1; /* or any other value */
+}
+
+  .workTimeObj .md-form input[type="text"] {
+    text-align: center !important;
+  }
+  
+  .devServerciesTable table th,
+  .devServerciesTable table td {
+  
+    border-top:0px;
+  }
+  
+  .infoIcons
+  {
+    width:35px;
+    height:35px;
+  }
+  
+  .nav_icons
+  {
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+    //justify-content: center;
+  }
+  
+  .liste
+  {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .liste i
+  {
+    font-size: 1.1rem;
+    line-height: 33px !important;
+  }
+  
+  
+  .buttonNavs {
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+  
+  .step2From .fa-plus-circle 
+  {
+    font-size:large;
+  }
+  
+  .employeesModal  .blueLetter
+  {
+    font-size: 1.1rem;
+    line-height: 30px !important;
+  }
+
+  .selectedEmp
+  {
+    font-size: 0.8rem !important; 
+    font-weight: bolder !important;
+  }
+
+  td .customWidth{
+    width: 100%;
+  }
+
+  .borderp
+  {
+   border:2px solid #10B4FA; 
+  }
+  
+  .iconLabel {
+    font-family: SegoeUI;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #000000;
+  }
+  
+  .disabledBtn{
+    background-color: #bbbbbb !important
+  }
+
+.devServerciesTable .form-control
+{
+ display:inline;
+}
+
+.devServerciesTable input.form-control
+{
+display:inline;
+}
+
+
+
+.btn-floating
+{
+  width:58px;
+  height:58px;
+}
+.btn-floating i
+{
+  font-size: 1.5rem;
+  line-height: 60px;
+}
+
+.outer {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 150px !important; /* any size */
+  max-height: 150px !important; /* any size */
+  margin: auto;
+  background-color: whitesmoke;
+  border-radius: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  
+.inner {
+  width:30px;
+  height: 30px;
+  border-radius: 100%;
+  position: absolute;
+  bottom: -10px;
+  right: -5px;
+}
+
+.red-text {
+  color: red;
+}
+
+.truncate-text {
+  white-space: nowrap;      /* Prevent text from wrapping */
+  overflow: hidden;         /* Hide overflowing content */
+  text-overflow: ellipsis;   /* Display ellipsis (...) for overflow */
+  max-width: 200px;          /* Set the maximum width */
+}
+
+
+.modal-body .user-profile-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+ 
+  display: flex;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: #e0e0e0;
+  border-radius: 50%;
+  position: relative;
+}
+
+
+.modal-body .user-profile-outer .user-profile-inner {
+  color: #797575;
+}
+
+
+.modal-body .user-profile-outer .edit-btns {
+  position: absolute;
+  font-size: 12px;
+  border: 1px solid #12B4FD;
+  color: #12B4FD;
+  right: 0;
+  bottom: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  align-items: center;
+}
+
+.modal-body .user-profile-outer .employee_profile {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.modal-body .md-form label {
+  right: 15px !important;
+  left: 15px !important;
+}

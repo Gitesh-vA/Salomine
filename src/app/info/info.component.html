@@ -1,0 +1,137 @@
+<jw-modal id="custom-modal-1">
+  <!--Grid row-->
+  <div class="row">
+
+
+    <!--Grid column-->
+    <div>
+
+      <!--Card-->
+      <mdb-card class="testimonial-card">
+        <!--Bacground color-->
+        <div class="card-up aqua-gradient">
+        </div>
+
+        <!--Avatar-->
+        <div class="avatar mx-auto">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg" class="rounded-circle">
+        </div>
+
+        <mdb-card-body>
+          <!--Name-->
+          <mdb-card-title>
+            <h4>Martha Smith</h4>
+            <i class="fas fa-phone"></i>
+            <h5>0528310278</h5>
+          </mdb-card-title>
+          <hr>
+
+          <div class="list-group">
+            <a (click)="CancelAppointmentModal.show()"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-1">Select To Cancel Appointment</h5>
+                <small></small>
+              </div>
+            </a>
+
+            <a (click)="sendMsgModal.show()"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-1">Send Msg And Cancel Appointment</h5>
+                <small class="text-muted"></small>
+              </div>
+
+            </a>
+            <a (click)="sendMsgModal.show()"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-1">Change Automatic Msg </h5>
+                <small class="text-muted"></small>
+              </div>
+            </a>
+
+            <a (click)="sendMsgModal.show()"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-1">send a Msg</h5>
+              </div>
+            </a>
+
+
+            <a (click)="CancelAppointmentModal.show()"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-1">Block a Client</h5>
+                <small class="text-muted"></small>
+              </div>
+            </a>
+
+
+            <div (click)="closeModal()" c class="d-flex w-100 justify-content-center">
+              <button mdbBtn type="button" color="default" rounded="true" mdbWavesEffect>Close</button>
+            </div>
+
+          </div>
+
+        </mdb-card-body>
+      </mdb-card>
+      <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!--Grid row-->
+</jw-modal>
+
+
+
+<div mdbModal #sendMsgModal="mdbModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">New message to </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="md-form">
+            <textarea type="text" style="width:100%;" id="message-text" class="md-textarea"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" (click)="sendMsgModal.hide()"
+          mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="CancelAppointmentModal.show()"
+          mdbWavesEffect>Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #CancelAppointmentModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Cancel Appointment</h4>
+      </div>
+      <div class="modal-body">
+        are you sure you want to cancel appointment?
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+          (click)="CancelAppointmentModal.hide()" mdbWavesEffect>Cancel</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

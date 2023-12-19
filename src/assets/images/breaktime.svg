@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.55" viewBox="0 0 33.5 33.55">
+  <g id="Group_5484" data-name="Group 5484" transform="translate(344.691 9935)">
+    <path id="Icon_material-free-breakfast" data-name="Icon material-free-breakfast" d="M30.225,4.5H22.213s-1.237,6.13-5.29,8.521S6,14.063,6,14.063v5.46a6.031,6.031,0,0,0,6.056,6.009H21.14A6.031,6.031,0,0,0,27.2,19.523V15.016h3.028a3.016,3.016,0,0,0,3.028-3V7.5A3.006,3.006,0,0,0,30.225,4.5Zm0,7.511H27.2V7.5h3.028Z" transform="translate(-344.944 -9927.481)" fill="none" stroke="#000" stroke-width="1"/>
+    <g id="Ellipse_1044" data-name="Ellipse 1044" transform="translate(-344.691 -9935)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="11" cy="11" r="11" stroke="none"/>
+      <circle cx="11" cy="11" r="10.5" fill="none"/>
+    </g>
+    <g id="Group_5483" data-name="Group 5483" transform="translate(-335.916 -9926.988)">
+      <line id="Line_790" data-name="Line 790" y1="4" x2="4" transform="translate(0.225 -0.012)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_791" data-name="Line 791" x1="2" y1="2" transform="translate(0.225 3.988)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,273 @@
+<app-header-nav *ngIf="notificationType != 'waitingUsers'" navLink="/salon-panel"   customClass="fixed-top dynamic-private-bg-c6"  isHasList="false" headerName="{{ 'Notification.notification' | translate }}"></app-header-nav>
+
+
+
+
+
+<div class="fullWH" *ngIf="isLoading">
+    <mdb-spinner class="centered"></mdb-spinner>
+  </div>
+
+  <div  class="" role="document">
+    <div class="modal-content">
+            <!--Header-->
+
+    <section *ngIf="!isLoading">
+        <div class="p-l-custom notificationPage">
+
+      
+            <!--<span class="upcorner" *ngIf="model && model.length > 0"  (click)="removeAllNotificationModal.show()"><mdb-icon far class="trashion" icon="trash-alt"></mdb-icon></span>-->
+    
+            <div class="notification-ui_dd-content ">
+                <div *ngIf="(!model || model.length == 0) && notificationType != 'waitingUsers'" class="text-center">
+                       <b>{{ 'Notification.noticiationIsEmpty' | translate }}</b> 
+                </div>
+                <div *ngIf="(!model || model.length == 0) && notificationType == 'waitingUsers'" class="text-center">
+                  <div *ngIf="!salonData" class="text-center pt-5 p-3">
+                    <div>
+                      <mdb-icon style="font-size: 50px;" far icon="hourglass"></mdb-icon>
+                    </div>
+            
+                    <div>
+                      <p class="font-weight-bold">{{'salonUsers.pendingEmptyMessageHeaders'  | translate }}</p>
+                      <p>{{'salonUsers.pendingEmptyMessageBody'  | translate }}</p>
+                    </div>
+                  </div>
+                </div>
+                <ng-container  *ngFor="let item of model; index as i;">
+                <div   [class.notification-list--unread] = "item.status === 1" *ngIf="item.messageType != 10 && item.messageType != 11"  class="notification-list">
+                    <div class="">
+                        <div class="row">
+                              <div class="notification-list_img col-3">                  
+                                  <div class="ncontainerp">
+                                     <div class="outerp" (click)="loadImage(host + item.profilePath,item.belongToUserName,item.belongToUserNumber); infoModal.show();" [ngStyle]="{'background-image': item.profilePath40x40 ? 'url(' + this.host + item.profilePath40x40 + ')' : 'url(assets/images/defaultProfilePic.svg)' }"  >
+                                      <!--  <div class="outerp" (click)="navigateTosalon(item.salonUserId)" [ngStyle]="{'background-image': item.profilePath40x40 ? 'url(' + this.host + item.profilePath40x40 + ')' : 'url(assets/images/defaultProfilePic.png)' }"  > -->
+                                        <div class="innerp">
+                                          <img  *ngIf='item.messageType == 22'  src="assets/images/notification/Reminder.svg" class="statusIcon"    alt=""> 
+                                          <img  *ngIf='item.messageType == 1 || item.messageType == 6 || item.messageType == 7  || item.messageType == 21'   src="assets/images/notification/Appointment.svg"  class="statusIcon"   alt=""> 
+                                          <img  *ngIf='item.messageType == 2 || item.messageType == 24 || item.messageType == 27'    src="assets/images/notification/Cancel.svg"   class="statusIcon"  alt=""> 
+                                          <img  *ngIf='item.messageType == 3'  src="assets/images/notification/Update.svg"  class="statusIcon"   alt=""> 
+                                          <img  *ngIf='item.messageType == 4 || item.messageType == 23 || item.messageType == 25 || item.messageType == 26'  src="assets/images/notification/Comment.svg"  class="statusIcon"  alt=""> 
+                                          <img  *ngIf='item.messageType == 8 || item.messageType == 9 || item.messageType == 20'  src="assets/images/notification/Confirmed.svg"  class="statusIcon"  alt=""> 
+                                        </div>
+                                      </div>
+                                    </div>
+                              </div>
+                                <div class="notification-list_detail col-8 textrtl" (click)="naviagteTo(item.payload,item.messageType,item.salonUserId)">
+                                    <p><b style="font-size:1rem;" [innerHTML]="item.title">{{item.title}}</b></p>
+                                      <p class="text-muted" [innerHTML]="item.body">{{item.body}}</p>
+                                    <p class="text-muted"><small>{{item.createdAt}}</small></p>
+                                </div>  
+                              <div class="col-1 p-0 text-center" (click)="openBottomModal(item._id,item.belongToUserId,item.title,item.body,item.profilePath40x40,item.messageType,item.salonUserId,item.payload)" style="margin:auto; color:black; font-weight: bolder;">
+                                  <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+                              </div>
+                      </div>
+                      <div >
+                        <div class="notificationBtns" *ngIf='(item.messageType == 6 || item.messageType == 7) && this.curMinPassed < item.minPassed'>
+                             <button mdbBtn (click)="DeclineUser(item._id,item.messageType == 6 ? 10 : 11,item.salonUserId,item.payload)"  type="button" class="p-0 whiteblackColor whiteblackColor-border button"   rounded="true" outline="true" mdbWavesEffect>{{ 'Notification.Decline' | translate }}</button>
+                             <button mdbBtn  (click)="AcceptUser(item._id,item.messageType == 6 ? 8 : 9,item.salonUserId,item.payload)"    type="button"   class="p-0 dynamic-private-border-c6 dynamic-private-c6 button"  rounded="true" outline="true" mdbWavesEffect>{{ 'Notification.Accept' | translate }}</button>
+                        </div>
+                      </div>
+                 
+                    </div>
+                    <div class="notification-list_feature-img">
+                   
+                    </div>
+                </div>
+              </ng-container>
+            </div>
+    
+    
+        </div>
+    </section>
+</div>
+
+  </div>
+
+
+
+
+<!-- Modal -->
+<div  mdbModal #bottomModal2="mdbModal"  class="modal fade bottom" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-bottom p-0 mt-0 " role="document">
+    <div class="modal-content" style="position:absolute; bottom:0px;">
+      <div class="modal-body p-0">
+        <button mdbBtn type="button" (click)="removeNotification()" color="danger" block="true" mdbWavesEffect>{{ 'Notification.remove' | translate }}</button>
+        <button mdbBtn type="button" (click)="AutoAccept(); bottomModal2.hide();" color="primary" block="true" mdbWavesEffect>Auto Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #infoModal="mdbModal" class="modal fade top" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-top" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="infoModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="row justify-content-center">
+          <mdb-image-modal [modalImages]="image" type="margin"></mdb-image-modal>
+        </div>
+         <!--<div class="salonpage-profile" >
+            <div class="row" *ngIf="selectedName" >
+              <div class="col-1">
+                <i class="fas fa-user prefix "></i>
+              </div>
+              <div class="col-9" >
+                <label for="form3" class="active">{{selectedName}}</label>
+              </div>
+            </div>
+            <div class="row"  *ngIf="selectedPoneNum">
+            <div class="col-1">
+              <i class="fas fa-phone prefix"></i>
+            </div>
+            <div class="col-9" >
+              <a href="tel:{{selectedPoneNum}}">
+               {{selectedPoneNum}}
+              </a>
+            </div>
+            </div>
+          </div>--> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div mdbModal #removeAllNotificationModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+         <!--Body-->
+          <div class="modal-body">
+              <p class="font-weight-bold"> {{ 'Notification.areYouSureWantToRemoveAnAllNotification' | translate }} </p> 
+          </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect
+          (click)="removeAllNotification(); removeAllNotificationModal.hide();">{{ 'Common.Yes' | translate }}
+        </a>
+
+        <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="removeAllNotificationModal.hide()">{{ 'Common.No' | translate }}
+      </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div  mdbModal #bottomModal="mdbModal"  class="modal fade bottom" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-bottom p-0 mt-0 " role="document">
+    <div class="modal-content p-2"  style="position:absolute; bottom:0px; border-radius: 20px 20px 0px 0px;">
+      <div class="modal-body p-0">
+        <div class="text-center ncontainerp mt-3">
+            <img  class="outerp" [src]="this.host + bottomProfilePath40x40"/>
+        </div>
+
+          <div class="mt-2 notification-list_content">
+    
+            <div  *ngIf="!AutoAcceptInfoVisible && !AutoAcceptMsgVisible" class="text-center mr-3 ml-3"  >
+                <p style="font-size:0.8rem;"  [innerHTML]="bottomBody">{{bottomTitle}} {{bottomBody}}</p>
+            </div>
+
+            <div *ngIf="AutoAcceptInfoVisible" (click)="displayAutoAcceptInfo(false)">
+
+              <div  class="text-center mr-3 ml-3"  >
+                  <p style="font-size:0.8rem;"  [innerHTML]="bottomTitle">{{bottomTitle}}</p>
+
+                  <p class="mt-3" style="font-weight: 600;">
+                     {{ 'Notification.autoAcceptInfo' | translate }} 
+                  </p>
+              </div>
+
+            </div>
+
+            
+            <div *ngIf="AutoAcceptMsgVisible" (click)="displayAutoAcceptMsg(false)">
+
+              <div  class="text-center mr-3 ml-3"  >
+                  <p style="font-size:0.8rem;"  [innerHTML]="bottomTitle">{{bottomTitle}}</p>
+
+                  <p class="mt-3" style="font-weight: 600;">
+                     {{ 'Notification.autoAcceptMsg' | translate }} 
+                  </p>
+              </div>
+              </div>
+
+            <div class="row"  *ngIf="!AutoAcceptInfoVisible && !AutoAcceptMsgVisible">
+                <div class="col-2 p-0" *ngIf="msgType == 6 || msgType == 7"  (click)="AutoAccept()"  style="text-align:center">
+                    <img   src="assets/images/notification/Appointment.svg"  style="height: 28px; width: 28px;  display: inline-block;"  alt=""> 
+                </div>
+                <div class="col-10 p-0"   *ngIf="msgType == 6 || msgType == 7"  style="font-size:0.8rem; font-weight:bold;">
+                  <div class="row">
+                    <div class="col-3 p-0" (click)="bottomModal.hide(); AutoAccept();" >
+                      {{ 'Notification.autoAccept' | translate }} 
+                    </div>
+                    <div class="col-9"  (click)="displayAutoAcceptInfo(true)">
+                      !
+                    </div>
+                  </div>
+                      
+                </div>
+
+              <!--<div class="col-2 mt-2 p-0" *ngIf="msgType == 21 || msgType == 20" style="text-align:center">
+                  <img   src="assets/images/notification/Cancel.png"  style="height: 28px; width: 28px;  display: inline-block;"  alt=""> 
+              </div>
+              <div class="col-10 mt-2 p-0" *ngIf="msgType == 21 || msgType == 20"  (click)="cancelAppointment()"  style="font-size:0.8rem; font-weight:bold;">
+                      {{ 'Notification.cancelAppointment' | translate }} 
+              </div>-->
+           
+                
+              <!--  <div class="col-2 mt-2 p-0" style="text-align:center">
+                    <img   src="assets/images/notification/Cancel.png"  style="height: 28px; width: 28px;  display: inline-block;"  alt=""> 
+                </div>
+                <div class="col-10 mt-2 p-0" (click)="cancelAppointment()"  style="font-size:0.8rem; font-weight:bold;">
+                        {{ 'Notification.deleteAppointment' | translate }} 
+                </div>-->
+
+                <div class="col-2 mt-2 p-0"  *ngIf="notificationType != 'waitingUsers'" style="text-align:center">
+                  <img   src="assets/images/notification/deleteNotification.svg"  style="height: 28px; width: 28px;  display: inline-block;"  alt=""> 
+                </div>
+                <div class="col-10 mt-2 p-0"   *ngIf="notificationType != 'waitingUsers'" (click)="removeNotification()" style="font-size:0.8rem; font-weight:bold;">
+                        {{ 'Notification.deleteNotification' | translate }} 
+                </div>
+
+                <div class="col-2 mt-2 p-0"  *ngIf="notificationType != 'waitingUsers'" style="text-align:center">
+                  <img   src="assets/images/notification/deleteAllNotification.svg"  style="height: 28px; width: 28px;  display: inline-block;"  alt=""> 
+                </div>
+                <div class="col-10 mt-2 p-0"  *ngIf="notificationType != 'waitingUsers'" (click)="removeAllNotification()" style="font-size:0.8rem; font-weight:bold;">
+                        {{ 'Notification.deleteAllNotification' | translate }} 
+                </div>
+            </div>
+        </div>
+
+        <!--<button mdbBtn type="button" (click)="removeNotification()" color="danger" block="true" mdbWavesEffect>{{ 'Notification.remove' | translate }}</button>
+        <button mdbBtn type="button" (click)="AutoAccept()" color="primary" block="true" mdbWavesEffect>Auto Accept</button>-->
+        <!--<button mdbBtn type="button" *ngIf="!isForUser" (click)="navigateToSalonUsers()" class="blue-bg text-white mt-3" block="true"  mdbWavesEffect>{{ 'Notification.allYourWaitingCustomers' | translate }} </button>-->
+        <button mdbBtn type="button" *ngIf="!isSalonOwner && isForUser" (click)="navigateToMyAppointment()" class="blue-bg text-white mt-3" block="true"  mdbWavesEffect>{{ 'Appointment.ModalHeading' | translate }}</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<mdb-side-nav #sidenav class="fixed side-nav-light left-navbar-side" [fixed]="true"><app-navbar isSalonView="{{this.isSalonOwner}}"></app-navbar></mdb-side-nav>
+<app-bottom-nav-bar (showNavbar)="sidenav.show()"></app-bottom-nav-bar>
+
+ 

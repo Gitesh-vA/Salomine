@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="salotime.app" version="2.13.16" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Salotime</name>
+    <description>
+       make easy appointment for any salon type 
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Salotime Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+
+        <platform name="android">
+        <allow-intent href="market:*" />
+  <icon background="res/logo_3636.png" density="ldpi" foreground="res/logo_3636.png"   />
+  <icon background="res/logo_4848.png" density="mdpi"  foreground="res/logo_4848.png"   />
+  <icon background="res/logo_7272.png" density="hdpi"   foreground="res/logo_7272.png" />
+  <icon background="res/logo_9696.png" density="xhdpi" foreground="res/logo_9696.png" />
+  <icon background="res/logo_144144.png" density="xxhdpi" foreground="res/logo_144144.png"  />
+  <icon background="res/logo_192192.png" density="xxxhdpi" foreground="res/logo_192192.png"  />
+
+      <!-- <splash src="res/320x426_splash.png" density="port-ldpi" width="320" height="426" />
+    <splash src="res/320x470_splash.png" density="port-mdpi" width="320" height="470" />
+    <splash src="res/480x640_splash.png" density="port-hdpi" width="480" height="640" />
+    <splash src="res/720x960_splash.png" density="port-xhdpi" width="720" height="960" />  -->
+
+    <!-- <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/drawable-ldpi-icon.png" /> -->
+       <!-- <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/drawable-mdpi-icon.png" /> -->
+          <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/splash.png" />
+             <!-- <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/drawable-xhdpi-icon.png" /> -->
+
+
+    <feature name="SocialSharing">
+  <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+</feature>
+
+   <edit-config mode="merge" file="*-Info.plist" target="NSLocationWhenInUseUsageDescription">
+        <string>My Salon App need location access to find for you salons nearby</string>
+ </edit-config>
+    </platform>
+    <preference name="AllowedSchemes" value="myscheme" />
+<preference name="loadUrlTimeoutValue" value="700000" />
+<preference name="SplashMaintainAspectRatio" value="true" />
+<preference name="StatusBarOverlaysWebView" value="true" />
+<preference name="StatusBarBackgroundColor" value="#10B4FA" />
+<preference name="AndroidXEnabled" value="true" />
+<preference name="orientation" value="portrait" />
+<preference name="GradlePluginKotlinEnabled" value="true"/> 
+<preference name="AndroidLaunchMode" value="singleTask" />
+<preference name="AndroidInsecureFileModeEnabled" value="true" />
+<preference name="GradlePluginKotlinEnabled" value="true"/>
+
+
+
+<universal-links>
+ <host name="salotime.com" scheme="https">
+   <path url="/EN/deeplink.html" event="openNewsListPage" />
+   <path url="/HE/deeplink.html" event="openNewsListPage" />
+ </host>
+</universal-links>
+
+</widget>

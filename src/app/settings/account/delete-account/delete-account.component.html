@@ -1,0 +1,48 @@
+<div class="fullWH" *ngIf="isLoading">
+    <mdb-spinner class="centered"></mdb-spinner>
+  </div>
+
+
+<app-header-nav  (triggerAction)="backEventOverride()"  backBtnIsHidden="{{backBtnIsHidden}}"  customClass="fixed-top dynamic-private-bg-c6" headerName="{{headerName}}"></app-header-nav>
+
+<div *ngIf="!isLoading">
+    <div class="m-2">
+        <p class="mb-2 pt-1-4 text-left-right2">{{ 'settings.AccountContent.deleteAccountContent.header' | translate }} {{userName}}</p> 
+        <p class="mb-2 text-left-right2">{{ 'settings.AccountContent.deleteAccountContent.body' | translate }}</p>   
+    </div>
+           
+    <div class="text-center mt-3">
+        <button mdbBtn type="button" color="danger"  class="deleteBtn" outline="true" (click)="sentSMSCode(); deleteAccountModal.show();"  rounded="true" mdbWavesEffect>{{headerName}}</button>  
+    </div>
+</div>
+
+
+<div mdbModal #deleteAccountModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body font-weight-bold">
+        <p>{{ 'settings.AccountContent.deleteAccountContent.verificationTxt' | translate }}</p>
+       <div class="md-form">
+        <input mdbInput type="text" name="text" (keyup)="keyup()"  [(ngModel)]="code" id="form1" class="form-control">
+        <p class="text-danger">{{Error}}</p>
+
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" mdbBtn  outline="true"  class="waves-light dynamic-private-bg-c6 white-text" (click)="validate();" aria-label="Close"
+        mdbWavesEffect>{{ 'settings.AccountContent.deleteAccountContent.verify' | translate }}</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!--
+<p>Enter the code we sent you to verify you</p>
+
+<div class="md-form">
+    <input mdbInput type="text" id="form1" class="form-control">
+    <label for="form1" class="">Type SMS code here</label>
+  </div>-->

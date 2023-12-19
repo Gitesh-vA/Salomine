@@ -1,0 +1,56 @@
+<app-header-nav showConfirmationModal="{{thereAnyChanged}}" navLink="{{backButtonPoint}}"
+    customClass="fixed-top dynamic-private-bg-c6" headerName="{{headerName}}"></app-header-nav>
+
+<div class="fullWH" *ngIf="isLoading">
+    <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+<div class="text-center" style="margin-top: 12%;">
+    <ul class="list-group">
+        <li class="list-group-item  border-0 justify-content-between align-items-center"
+            *ngFor="let employee of Employees;  let i = index">
+            <div class="row centervirtical">
+                <div class="col-3">
+                    {{employee.employeeName}}
+                </div>
+                <div class="col-6">
+                    <div class="ncontainerp" style="width:70px; height:70px;">
+                        <div class="outerp"
+                            [ngStyle]="{'background-image': employee.profile ? 'url(' + employee.profile  + ')' : 'url(assets/images/defaultProfilePic.png)'}">
+                            <div class="innerp">
+                                <input type="file" (click)="$event.target.value=null;"
+                                    (change)="onImagePicked($event,employee._id)" #filePicker>
+                                <div style="height: 25px; width: 25px;  display: inline-block" class="filled"
+                                    (click)="filePicker.click()" [inlineSVG]="'assets/images/updatesalon/edit.svg'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <mdb-icon [ngClass]="{'text-danger' : Employees.length > 1}"
+                        (click)="Employees.length > 1 && deleteEmployee(i)" fas
+                        icon="trash" (click)="confirmationModal.show()"></mdb-icon>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div mdbModal #confirmationModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align: center;">
+        <span>Do you want to delete employee?</span>
+      </div>
+      <div class="modal-footer" style="margin-left: 21%;">
+        <button type="button" mdbBtn class="waves-light dynamic-private-bg-c6 bg-red border-btn text-white" (click)="removeData()"
+          aria-label="Close" mdbWavesEffect>{{'Common.Yes' | translate}}</button>
+        <button type="button" mdbBtn outline="true"
+          class="dynamic-private-border-c6 dynamic-private-c6 relative border-btn waves-light" (click)="confirmationModal.hide()"
+          mdbWavesEffect>{{'Common.No' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

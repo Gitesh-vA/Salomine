@@ -1,0 +1,79 @@
+<!--Navbar-->
+<mdb-navbar  #navbar SideClass="navbar navbar-expand-lg navbar-dark"   [ngClass]="customClass"  class="blueNav"  >
+    <mdb-icon   fas icon="angle-left" size="lg" (click)="navigator()"  class="text-white mr-auto d-flex d-md-none align-self-center">  </mdb-icon>
+    <p class="text-white mr-auto d-flex d-md-none align-center wow slideInRight m-1 p-0" style="font-weight:700">{{headerName}}</p>
+
+    <links *ngIf="isHasList == 'true'">
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto header-items">
+        <li class="nav-item" *ngIf="hiddenHome != 'true'">
+          <a class="nav-link waves-light"  routerLink="/home" mdbWavesEffect><mdb-icon fas icon="home"></mdb-icon>{{ 'HeaderNav.Home' | translate }}</a>
+        </li>
+       <!-- <li class="nav-item">
+            <a class="nav-link waves-light" routerLink="/profile"    mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon>{{ 'Home.sideBar.Profile' | translate }}</a>
+       </li>-->
+         <li class="nav-item" *ngIf="isOwner == 'true'">
+            <a class="nav-link waves-light" routerLink="/update-salon"  mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon>{{ 'Home.sideBar.updateSalon' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isOwner == 'true'">  
+            <a class="nav-link waves-light" routerLink="/DayOff"  mdbWavesEffect><mdb-icon fas icon="coffee"></mdb-icon> {{ 'HeaderNav.Dayoff' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isOwner == 'true'">
+          <a class="nav-link waves-light" routerLink="/blockUsers"  mdbWavesEffect><mdb-icon fas icon="ban" ></mdb-icon>{{ 'HeaderNav.blockedUsers' | translate }}</a>
+       </li>
+        <li *ngIf="curOp != 'IOS'" class="nav-item" (click)="sendMail()">
+            <a class="nav-link waves-light"  mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon>{{ 'Home.sideBar.ContactUs' | translate }}</a>
+        </li>
+        <li class="nav-item" (click)="inviteFriend()">
+            <a class="nav-link waves-light" mdbWavesEffect> <mdb-icon fas icon="share-alt"></mdb-icon>{{ 'MySalon.inviteCustomer' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isOwner == 'true' && isHaveStore == 'true'"  (click)="navigateToStore()">    
+          <a class="nav-link waves-light" mdbWavesEffect> <mdb-icon fas icon="store"></mdb-icon>{{ 'Store.updateStore' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isOwner == 'true' && isHaveStore != 'true'"  (click)="navigateToStore()">    
+          <a class="nav-link waves-light" mdbWavesEffect> <mdb-icon fas icon="store"></mdb-icon>{{ 'Store.openStore' | translate }}</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isVisible == 'true'"  (click)="displayVisiblityModal()">    
+          <a class="nav-link waves-light" mdbWavesEffect> <mdb-icon fas icon="eye"></mdb-icon>{{ 'Home.sideBar.Public' | translate }}</a>
+        </li>
+
+        <li class="nav-item"  *ngIf="isVisible == 'false'" (click)="displayVisiblityModal()">    
+          <a class="nav-link waves-light" mdbWavesEffect> <mdb-icon fas icon="eye-slash"></mdb-icon>{{ 'Home.sideBar.Private' | translate }}</a>
+        </li>
+      </ul>
+      <!-- Links -->
+    </links>
+  </mdb-navbar>
+  <!--/.Navbar-->
+
+  <!--
+    
+  -->
+
+  
+<div mdbModal #confirmationModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="confirmationModal.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title w-100" id="myModalLabel">{{'Common.Warning' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+      {{'updateSalon.exitFromSalonWithoutSaveMsg' | translate}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" mdbBtn  class="waves-light dynamic-private-bg-c6 text-white" (click)="confirmationModalResponse()" aria-label="Close"
+        mdbWavesEffect>{{'Common.Yes' | translate}}</button>
+      <button type="button" mdbBtn  outline="true"  class="dynamic-private-border-c6 dynamic-private-c6 relative waves-light"   (click)="confirmationModal.hide()"
+        mdbWavesEffect>{{'Common.No' | translate}}</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+

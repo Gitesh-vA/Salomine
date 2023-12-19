@@ -1,0 +1,96 @@
+
+mdb-tab {
+    overflow-y: scroll;
+    height: 100%;
+    padding: 0rem;
+ }
+ 
+ .col1 {
+    vertical-align: middle;
+    width: 14%;
+ }
+ 
+ .col2 {
+    width: 40%;
+ }
+ 
+ .col3 {
+    width: 40%;
+ }
+ 
+ .nav-link {
+    color: white;
+    font-weight: bolder;
+ }
+ 
+ .nav {
+    background-color: aliceblue;
+ }
+ 
+ .tab-content {
+    padding-top: 10px;
+    height: 500px;
+ }
+ 
+ .navigator {
+    background: transparent !important;
+ }
+ 
+ .f-12 {
+    font-size: 20px;
+ }
+ 
+ .iconSize
+ {
+    height: 75px;
+    width: 75px;
+ }
+ 
+ tbody
+ {
+    border-bottom: 1px solid #d5d5d5;
+ }
+ 
+ .rowData
+ {
+    height:140px;
+ }
+ 
+ div.active
+ {
+  border-bottom: 3px solid white;
+ }
+ 
+ .navbaritem
+ {
+    min-width:70px;
+ }
+
+ .ncontainerp
+{
+  width:56px;
+  height:56px;
+}
+
+.displayOff
+{
+   display: none;;
+}
+
+.outlineBtn
+{
+   width:100px; 
+   height:30px; 
+   border-radius: 50px;
+   font-size: 11px;  
+   font-weight: bold;
+   box-shadow: none; 
+   text-transform: capitalize;
+}
+
+#autoAccepted , #booked
+{
+   width:170px;
+}
+ 
+ 

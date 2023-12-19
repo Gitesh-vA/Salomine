@@ -1,0 +1,1124 @@
+@import "./scss/variables";
+
+* {
+  direction: rtl !important;
+}
+.carousel-indicators {
+  padding-right: 0;
+}
+
+.modal-title {
+  text-align: right;
+}
+
+.modal-dialog .modal-content
+{
+  text-align: right;;
+}
+
+.datepicker-inline-icon
+{
+  left: 0px !important;
+  right: auto !important;
+}
+
+
+app-home *,
+app-profile .container-fluid * {
+  direction: ltr !important;
+}
+
+.text-left-right
+{
+  text-align: left; 
+}
+
+.text-left-right2
+{
+  text-align: right; 
+}
+
+.salonpage-profile *{
+  direction: ltr !important;
+}
+.salonpage-profile{
+  text-align: left;
+}
+
+.notification-list .notification-list_feature-img img {
+  margin-left: 20px;
+}
+
+.notification-list .notificationBtns
+{
+ text-align: center;
+ margin-right:60px;
+ margin-left:0px;
+}
+
+
+.store .rf{
+  text-align: right;
+}
+
+.mr-auto,
+.mx-auto {
+  margin-right: 0px !important;
+}
+
+.fa-angle-left:before {
+  transform: rotate(180deg);
+}
+
+.pr-3-rtl {
+  padding-right: 1rem !important;
+}
+
+.rtl-mr-1 {
+  margin-right: 0.25rem !important;
+}
+
+.md-form label {
+  right: 0 !important;
+  text-align: right !important;
+}
+
+.rtlTxt {
+  text-align: right;
+}
+
+.pr-5-rtl {
+  padding-right: 3rem !important;
+}
+
+.pl-5-rtl {
+  padding-left: 3rem !important;
+}
+
+mdb-card .mr-auto,
+mdb-card .mx-auto {
+  margin-right: auto !important;
+}
+
+.textrtl
+{
+  text-align: right;
+}
+
+//Update Salon RTL
+.step2From .mdb-icon {
+  float: right;
+}
+
+.step2From .md-form label {
+  left: inherit !important;
+  right: 20px !important;
+  font-size: 0.8rem;
+}
+
+.step2From .row {
+  text-align: right;
+}
+
+.step2From .customTxt {
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.step2From .prefix {
+  right: 0;
+}
+
+.step2From .mdb-autocomplete-clear {
+  left: 0px;
+}
+.step2From table th {
+  text-align: right;
+}
+
+.step2From .switch {
+  text-align: right;
+}
+
+.step2From .rf {
+  text-align: right;
+  right: 0 !important;
+}
+
+.step2From .mdb-select-toggle {
+  left: 0px !important;
+  right: auto !important;
+}
+
+.step2From .dropdown-content {
+  text-align: right !important;
+}
+
+.step2From .my-3 * {
+  direction: ltr !important;
+}
+
+.step2From .form-group label {
+  float: right;
+}
+
+
+.step2From .table.table td:first-child,
+table.table th:first-child {
+  padding-left: inherit;
+}
+
+.daysDP .mdb-select-toggle {
+  left: -14px !important;
+}
+
+.step2From .mdb-select-toggle {
+  right: auto !important;
+  left: 0;
+}
+.list-inline,
+.nav {
+  padding-right: 0px;
+}
+
+.step2From .at_x {
+  position: absolute;
+  top: 35.9px;
+  left: 12px;
+}
+
+.cal-week-view .cal-day-headers {
+  padding-right: 50px !important;
+  padding-left: 0px !important;
+}
+.cal-week-view .cal-day-headers .cal-header {
+  border-right: 1px solid #e1e1e1 !important;
+  border-left: 1px #e1e1e1 solid !important;
+}
+
+.cal-week-view .cal-day-column {
+  border-right: solid 1px #e1e1e1 !important;
+}
+
+mwl-calendar-day-view-event .cal-event
+{
+  text-align:right;
+}
+
+mwl-calendar-tooltip-window .cal-tooltip
+{
+  z-index:999;
+}
+
+mwl-calendar-open-day-events .my-custom-class
+{
+  text-align: right;
+}
+
+mwl-calendar-open-day-events .exceptionDayColumn
+{
+  text-align: right;
+}
+
+
+.calendar-options
+{
+  left: 20px;
+  right:auto;
+}
+
+
+.cal-day-view .my-custom-class
+{
+  width: 83% !important;
+  margin-right: 70px;
+}
+
+.cal-day-view .exceptionDayColumn
+{
+  width: 83% !important;
+  margin-right: 70px;
+}
+
+
+
+.calendarWidget .fa-arrow-left,
+.calendarWidget .fa-arrow-right {
+  transform: rotate(180deg);
+}
+
+.calendarWidget
+{
+  position: relative;
+}
+
+.fixedBtn {
+  position: fixed;
+  z-index: 999;
+  top: 50px;
+  right: 3px;
+  left: inherit;
+  transition: transform 1s linear;
+  transition: transform 1s linear, -webkit-transform 3s linear;
+}
+
+/////
+
+///
+.ltr {
+  direction: ltr !important;
+}
+
+app-salon-panel .navbar-nav mdb-icon {
+  float: left;
+}
+
+app-salon-panel .navbar-nav .nav-link {
+  padding-left: 0px !important;
+}
+
+reservation-app .container *:not([type="text"]) {
+  direction: ltr !important;
+}
+
+
+reservation-app mdb-stepper .card-body {
+  text-align: right;
+}
+
+reservation-app mdb-stepper .stepper {
+  padding-right: 35px;
+}
+
+reservation-app .custom-btn {
+  float: none  !important;
+}
+
+.cal-month-view .cal-day-cell:not(:last-child) {
+  border-left: 1px #e1e1e1 solid !important;
+  border-right: 0px solid !important;
+}
+.cal-month-view .cal-cell {
+  float: left !important;
+}
+
+/*.calendarWidget *{
+  direction: ltr !important;
+}*/
+
+.modal-content:not(.card-image) .close {
+  left: 5px !important;
+  right: auto !important;
+}
+
+app-info-dynamic-modal {
+  direction: ltr !important;
+}
+
+////
+
+// body,
+// html {
+//   height: 100%;
+//   margin: 0;
+//   font-family: Arial, Helvetica, sans-serif;
+// }
+
+input[type="file"] {
+  visibility: hidden;
+  display: none;
+}
+
+.loginForm .carousel-indicators {
+  display: none;
+}
+
+.loginForm > .card {
+  height: 100%;
+}
+
+.loginForm .rgba-stylish-strong {
+  background-color: rgba(62,69,81,0) !important;
+}
+
+.loginForm  .md-form input[type=text]
+{
+  border-bottom: 1px solid #6d6d6d52;
+}
+
+.loginForm .modal-header
+{
+  border-bottom: 1px solid #b9b9b9 !important;
+}
+
+.grayc
+{
+  color:#6d6d6dad;
+}
+
+.chat-room .carousel {
+  touch-action: auto !important;
+}
+.chat-room .mdb-accordion-indicator {
+  right: 12px !important;
+}
+.chat-room .card-body {
+  padding: 0px !important;
+}
+///////////////////////////////////////////////////***Home***//////////////////////////////////////////////////////////
+.carousel-multi-item .controls-top {
+  direction: ltr !important;
+  display: none;
+}
+
+.imgStyle {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid #f1f1f1;
+}
+
+.carousel-multi-item {
+  margin-bottom: 0 !important;
+}
+
+.step2From .carousel-indicators {
+  margin-bottom: -0.4em !important;
+  direction: ltr !important;
+}
+
+.main .card {
+  box-shadow: none !important;
+}
+
+.loginForm .card {
+  background-color: transparent !important;
+}
+
+.button-collapse {
+  color: $light-color !important;
+}
+
+.updateSalon .card-body {
+  padding: 0.3rem !important;
+}
+
+.minutesDP .deselect-option
+{
+  direction: rtl !important;
+}
+
+.plr-2
+{
+  padding-right: 0.5rem !important;
+}
+
+.plr-5
+{
+  padding-right: 3rem !important;
+}
+
+.main .list-group-item {
+  border-left: 0;
+  border-right: 0;
+}
+
+.mdb-accordion-indicator:after {
+  display: none !important;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.form-check-input[type=radio]:not(:checked) + label {
+  padding-right: 35px;
+  padding-left: 0;
+}
+
+.form-check-input[type=radio]:checked + label {
+  padding-right: 35px;
+  padding-left: 0;
+}
+
+.form-check-input[type=radio] + label:before {
+  right: 0;
+  left: auto;
+}
+
+.form-check-input[type=radio] + label:after {
+  right:0 !important;
+}
+
+
+
+
+.salonPanel .carousel-inner img {
+  object-fit: contain;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: $dark-color;
+}
+
+
+.main .carousel-indicators li {
+  display: none !important;
+}
+
+.salonPanel .chatContent{
+  text-align:center;
+}
+
+.salonPanel .card {
+  box-shadow: none;
+  border-bottom: 1px solid #ece7e7 !important;
+}
+
+.salonPanel .table tbody + tbody {
+  border-top: none;
+}
+
+
+.centered {
+  z-index:999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform: -webkit-translate(-50%, -50%);
+  transform: -moz-translate(-50%, -50%);
+  transform: -ms-translate(-50%, -50%);
+  color: darkred;
+}
+
+.container {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.row {
+  margin: 0px !important;
+}
+
+.col-md-12 {
+  padding: 0px !important;
+}
+
+.list-group-item {
+  //background: $light-bg-color;
+}
+
+.myAppointment > .card {
+  background: $main-bg-color;
+}
+
+.myAppointment .card-body {
+  background: $main-bg-color;
+}
+
+.main {
+  background: $main-bg-color;
+  height: 100%;
+}
+
+.mb-6 {
+  margin-bottom: 4.7rem !important;
+}
+
+.mt-45 {
+  margin-top: 2.3rem !important;
+}
+
+.mt-67 {
+  margin-top: 6.7rem !important;
+}
+
+.sideBarMain {
+  background: $main-bg-color;
+}
+
+.mainBg {
+  background: $main-bg-color;
+}
+
+.fullWH {
+  height: 100%;
+  width: 100%;
+}
+
+.fullH {
+  height: 98%;
+}
+
+.fullH .modal-content {
+  height: 100%;
+}
+
+app-search-dialog {
+  height: 100%;
+}
+
+.mt-6 {
+  margin-top: 3.5rem !important;
+}
+
+.cal-event-title,
+.cal-event-action {
+  color: white !important;
+  font-weight: bold;
+}
+
+.screenCover {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(51, 51, 51, 0.7);
+  z-index: 1000;
+}
+
+.updateSalon .step2From {
+  padding-top: 40px;
+}
+.step2From {
+  padding-top: 40px;
+}
+
+.contentBox p {
+  font-size: 14px;
+  color: #33B5E5;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.step2From .md-form .prefix {
+  position: static !important;
+  margin-top: 3.5px;
+}
+
+.step2From .form-control {
+  font-size: 11px !important;
+}
+
+.step2From .md-form .prefix {
+  font-size: 1.4rem !important;
+}
+
+.step2From .topBox input {
+  border-bottom: none !important;
+}
+
+.list-group-item .row {
+  padding-top: 10px;
+}
+
+
+.nav-link {
+  color: $light-color;
+  font-weight: bolder;
+}
+
+.nav-item {
+  color: $light-color;
+}
+
+ul.stepper.horizontal:first-child {
+  margin-top: 0px !important;
+}
+
+.appointmentSteps ul.stepper {
+  margin: 1em -1rem;
+}
+
+
+.appointmentapp .name-btn
+{
+  left: 10px;
+  right: auto !important;
+}
+
+.appointmentapp .service-btn
+{
+  left: 10px;
+  right: auto !important;
+}
+
+.appointmentapp .date-btn
+{
+  left: 10px;
+  right: auto !important;
+}
+
+.appointmentapp .time-btn
+{
+  left: 10px;
+  right: auto !important;
+}
+
+
+.appointmentapp .employee-btn
+{
+  left: 10px;
+  right: auto !important;
+}
+
+
+
+.appointmentapp .name-tag
+{
+  right: 60px;
+  left:auto !important;
+}
+
+
+.appointmentapp .employee-tag
+{
+  right: 60px;
+  left:auto !important;
+}
+ 
+.appointmentapp .service-tag
+{
+  right: 60px; 
+  left:auto !important;
+}
+
+.appointmentapp .date-tag
+{
+  right: 60px;
+  left:auto !important;
+}
+
+.appointmentapp .time-tag 
+{
+  right: 60px; 
+  left:auto !important;
+}
+
+
+
+///////////////////////////////////////////////////***Profile***//////////////////////////////////////////////////////////
+
+.bg-image {
+  background: $main-bg-color;
+  height: 250px;
+  @include filter(blur, 18px);
+  box-shadow: 0px 0.5px 6px 1px #ccc;
+  -webkit-box-shadow: 0px 0.5px 6px 1px #ccc;
+  -moz-box-shadow: 0px 0.5px 6px 1px #ccc;
+}
+
+.bg-text {
+  color: $light-color;
+  font-weight: bold;
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+  @include translate(-50%, -50%);
+}
+
+.bg-profile {
+  background: url("./assets/img/default_profile.png") center no-repeat;
+  border: 3px solid $light-bg-color;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  border-radius: 180px;
+  background-size: cover;
+  @include translate(-50%, -50%);
+}
+
+.cameraIcon {
+  position: absolute;
+  top: 26%;
+  left: 60%;
+}
+
+.uploadIcon {
+  position: absolute;
+  top: 26%;
+  left: 35%;
+}
+
+
+.fa-upload
+{
+  font-size: 90%; 
+}
+
+.dDDcss .ng-trigger-dropdownAnimation
+{
+  left: -40px !important;
+}
+
+
+.bg-navs {
+  color: $light-color;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  @include translate(-50%, -50%);
+}
+
+.deselect-option {
+  height: auto !important;
+}
+
+.serverDP * {
+  //height: auto !important;
+}
+
+.daysDP .mdb-select-toggle {
+  left: -14px !important;
+}
+
+mdb-select-dropdown .dropdown-content li.optgroup {
+  border-top: 0.11rem solid #a9a9a970 !important;
+  margin: auto 5px;
+  height: 0px !important;
+}
+
+mdb-select-dropdown span {
+  text-align: Center !important;
+  direction: ltr !important;
+}
+
+mdb-select-dropdown .disabled > span {
+  font-size: 11px !important;
+}
+
+mdb-select .option,
+mdb-select .placeholder {
+  text-align: center !important;
+}
+
+
+.fixedfooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+}
+
+.wsbg {
+  background-color: whitesmoke !important;
+}
+
+.wbg {
+  background-color: white !important;
+}
+
+.offWhiteBg {
+  background-color: #eff3f5 !important;
+}
+
+.step2From .md-form .prefix {
+  color: #4285f4 !important;
+}
+
+.hZI {
+  z-index: 999;
+}
+
+.bg-contnent {
+  font-weight: bold;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  z-index: 2;
+  width: 100%;
+  height: 300px;
+  background: $main-bg-color;
+  @include translate(-50%, -50%);
+}
+
+mdb-card-body {
+  background-color: $light-bg-color;
+}
+
+.appointmentSteps .step-new-content {
+  margin-left: 10px !important;
+  margin-right: 0px !important;
+}
+
+.h200 {
+  height: 200px !important;
+}
+
+.h300 {
+  height: 300px !important;
+}
+.h340 {
+  height: 340px !important;
+}
+
+.sDBox ngb-datepicker.dropdown-menu {
+  margin-top: 76px;
+  transform: none !important;
+}
+
+///////////////////////////////////////////////////***Benefist & Tips***//////////////////////////////////////////////////////////
+
+// We should add this class to the first element or to the main container to give it the bg-color
+/*
+.main-container {
+  background: $main-bg-color;
+}
+*/
+
+.headline {
+  color: $light-color;
+  text-align: center;
+  font-size: 22px;
+}
+
+.section-box {
+  margin: 30px auto;
+  padding: 15px;
+  border-radius: 25px 5px;
+  background: #f4f4f4;
+  box-shadow: 10px 10px 15px #869ad6;
+}
+
+.section-headline {
+  color: #bc88b3;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.section-content {
+  color: #006d97;
+  text-align: center;
+}
+
+.card-body {
+  background: $light-color;
+}
+
+.step2 .card-header {
+  background: $light-bg-color !important;
+}
+
+.step-new-content {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.transparentBg {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.blackColor {
+  color: black !important;
+}
+
+.is-invalid .form-control {
+  border-color: #f44336 !important;
+  color: red;
+}
+
+.is-invalid .dropdown-btn {
+  border-color: #f44336 !important;
+  color: red;
+}
+
+.mdb-select-toggle {
+  right: auto !important;
+  left: 0;
+}
+
+.serveciesTabs .nav > .active {
+  background: none !important;
+  //width: 100%;
+}
+
+.serveciesTabs .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.btn-floating {
+  box-shadow: none !important;
+}
+
+.classic-tabs .nav li a.active {
+  padding-bottom: 18px;
+}
+
+.serveciesTabs .container-fluid {
+  padding: 0px;
+  margin: 0px;
+  height:100%;
+  overflow:auto;
+}
+
+.btn-blue,
+.blue-bg {
+  background-color: #10b4fa !important;
+  color: #fff;
+}
+
+.blue-bg-disable {
+  background-color: #bddcea !important;
+}
+
+.blue-text-disable {
+  color: #bddcea !important;
+}
+
+.blue-text {
+  color: #10b4fa !important;
+}
+
+.disabled-text
+{
+  color: #b6b6b6 !important;
+}
+
+
+.blue-text-disable {
+  color: #bddcea !important;
+}
+
+.red {
+  color: #ff5500 !important;
+}
+
+.menuList .fas,
+.menuList .far {
+  width: 20px !important;
+}
+
+.step2From .classic-tabs .nav li a.active {
+  border-bottom: none !important;
+}
+
+ul.stepper>.step:not(:last-of-type):after {
+  right: -0.8em !important;
+  left: auto !important;
+  top: 2.8rem !important;
+}
+
+.classic-tabs li {
+  margin: auto !important;
+}
+
+.serveciesTabs .tab-content {
+  border-bottom: none !important;
+}
+
+.classic-tabs .nav li a.active {
+  border-bottom: none !important;
+}
+
+.md-form label.active {
+  display: none !important;
+}
+
+.navbar-toggler {
+  font-size: medium;
+  padding: 0px;
+}
+
+
+.header_services th:first-child {
+  width: 100px;
+}
+
+.cal-week-view .cal-header span {
+  display: none !important;
+}
+
+.cal-week-view .cal-header b {
+  font-size: 12px;
+}
+.cal-week-view .cal-time-label-column {
+  width: 50px !important;
+}
+
+.cal-week-view .cal-time {
+  width: 50px !important;
+}
+
+.serverciesTable * {
+  font-size: 11px;
+}
+
+.workTimeObj .table.table td,
+.workTimeObj table.table th,
+.workTimeObj input {
+  font-size: 11px !important;
+}
+
+.workTimeObj .timepicker {
+  height: auto !important;
+}
+
+.main .carousel-control-next-icon {
+  display: none;
+}
+
+.main .carousel-control-prev {
+  display: none;
+}
+
+.step2From .md-form label.active {
+  right: 4px !important;
+}
+
+.step2From #salonPhoneNumber.active {
+  right: -10px !important;
+}
+
+
+
+@media (max-height: 992px) {
+  .side-nav .logo-wrapper,
+  .side-nav .logo-wrapper a {
+    height: 190px !important;
+  }
+}
+
+//iphone 5
+@media (max-width: 340px) {
+  .nav_icons {
+    margin: 0px !important;
+  }
+}
+
+ /* CSS specific to iOS devices */ 
+   @supports (-webkit-touch-callout: none) {
+     .counter{
+        top:7px;
+        right:-5px;
+       }
+   }

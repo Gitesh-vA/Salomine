@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#10b4fb"/>
+      <stop offset="1" stop-color="#1f4a65"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2266" data-name="Group 2266" transform="translate(-667 -4581)">
+    <g id="Group_4349" data-name="Group 4349" transform="translate(667 4581)">
+      <circle id="Ellipse_923" data-name="Ellipse 923" cx="25" cy="25" r="25" fill="url(#linear-gradient)"/>
+      <path id="Icon_awesome-user-clock" data-name="Icon awesome-user-clock" d="M27.246,126a7.905,7.905,0,1,0,5.595,2.315A7.905,7.905,0,0,0,27.246,126Zm3.516,8.256a.537.537,0,0,1-.533.533H26.9a.537.537,0,0,1-.533-.533v-4.208a.537.537,0,0,1,.533-.533h.692a.537.537,0,0,1,.533.533v2.983h2.1a.537.537,0,0,1,.533.533Zm-13.184-.346a9.634,9.634,0,0,1,1-4.257,7.319,7.319,0,0,0-1.351-.137h-.917a9.562,9.562,0,0,1-8.009,0H7.383A7.385,7.385,0,0,0,0,136.9v2.285a2.637,2.637,0,0,0,2.637,2.637H21.7a9.668,9.668,0,0,1-4.125-7.91ZM12.3,127.758Z" transform="translate(8.398 -102.758)" fill="#fff"/>
+    </g>
+    <circle id="Ellipse_96" data-name="Ellipse 96" cx="6.982" cy="6.982" r="6.982" transform="translate(680.965 4592.035)" fill="#fff"/>
+  </g>
+</svg>

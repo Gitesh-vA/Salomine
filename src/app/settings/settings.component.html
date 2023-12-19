@@ -1,0 +1,51 @@
+<div class="fullWH" *ngIf="isLoading">
+  <mdb-spinner class="centered"></mdb-spinner>
+</div>
+
+
+<app-header-nav (triggerAction)="backEventOverride()" 
+  headerName="{{this.headerTxt}}"   customClass="dynamic-private-bg-c6"></app-header-nav>
+
+<div *ngIf="!isLoading">
+
+  <ng-container *ngFor="let options of Options; let i=index">
+    <div class="row" *ngIf="this.activeWindow == 'Home'" [ngClass]="i==0 ? 'pt-1-4' : 'notfirstrow' "
+      (click)="onclick(options.name,options.caption)">
+      <div class="col-2 text-center">
+        <img class="optsrc" src="{{options.src}}" alt="account">
+      </div>
+      <div class="col-10 text-left-right2 font-weight-bold pr-2">
+        {{options.caption}}
+      </div>
+    </div>
+  </ng-container>
+
+  <div id="account" *ngIf="this.activeWindow == 'Account'">
+    <app-account></app-account>
+  </div>
+
+  <div id="Language" *ngIf="this.activeWindow == 'Language'">
+    <app-language></app-language>
+  </div>
+
+
+  <div id="Help" *ngIf="this.activeWindow == 'Help'">
+    <app-help></app-help>
+  </div>
+
+
+  <div id="About" *ngIf="this.activeWindow == 'About'">
+    <app-about></app-about>
+  </div>
+
+  <div id="Privacy" *ngIf="this.activeWindow == 'Privacy'">
+    <app-privacy-options></app-privacy-options>
+  </div>
+
+  <div id="Theme" *ngIf="this.activeWindow == 'Themes' ">
+    <app-theme></app-theme>
+  </div>
+
+
+
+</div>

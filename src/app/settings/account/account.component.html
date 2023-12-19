@@ -1,0 +1,29 @@
+<div *ngIf="this.activeWindow == 'home'">
+
+  <ng-container *ngFor="let options of Options; let i=index">
+    <div class="row" [ngClass]="i==0 ? 'pt-1-4' : 'notfirstrow' " (click)="onclick(options.name,options.caption)">
+      <div class="col-2 text-center text-left-right2">
+        <img class="optsrc" [ngClass]="options.id=='deleteAccount' ? 'svg-text-danger' : '' " src="{{options.src}}"
+          alt="account">
+      </div>
+      <div class="col-10  pr-2 text-left-right2">
+        <div class="font-weight-bold" (click)="clickEvent(options.id)"
+          [ngClass]="options.id=='deleteAccount' ? 'text-danger' : 'text-dark' ">
+          {{options.caption}}
+        </div>
+        <div class="col-12 p-0 text-left-right2">
+          <p class="m-0">{{options.row1}}</p>
+        </div>
+        <div class="col-12 p-0 text-left-right2">
+          <p class="m-0">{{options.row2}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>
+
+
+<div *ngIf="this.activeWindow == 'deleteAccount'">
+  <app-delete-account></app-delete-account>
+</div>
